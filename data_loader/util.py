@@ -189,7 +189,7 @@ def resample(data, header_data, resample_Fs = 300):
 
     for ii in range(num_leads):
         tmp_hea = header_data[ii+1].split(' ')
-        gain_lead[ii] = int(tmp_hea[2].split('/')[0])
+        gain_lead[ii] = int(tmp_hea[2].split('/')[0].split('.')[0])
 
     # divide adc_gain
     for ii in range(num_leads):
@@ -303,17 +303,32 @@ def slide_and_cut_beat_aligned(data, n_segment=1, window_size=3000, sampling_rat
     try:
 
         if not seg_with_r:
-            ecg_segments = nk.ecg_segment(cleaned, sampling_rate=sampling_rate)
+            try:
+                ecg_segments = nk.ecg_segment(cleaned, sampling_rate=sampling_rate)
+            except: # in sample A0012 neurokit2 cant segment ch1
+                # ecg_single_lead = data[0]
+                # cleaned = nk.ecg_clean(ecg_single_lead, sampling_rate=sampling_rate)
+                # ecg_segments = nk.ecg_segment(cleaned, sampling_rate=sampling_rate)
+                for ch in range(channel_num):
+                    try: # and now neurokit2 cant segment ch0 of A0559
+                        ecg_single_lead = data[ch]
+                        cleaned = nk.ecg_clean(ecg_single_lead, sampling_rate=sampling_rate)
+                        ecg_segments = nk.ecg_segment(cleaned, sampling_rate=sampling_rate)
+                    except:
+                        continue
+            M = len(ecg_segments)
+
         else:
             processed_ecg = nk.ecg_findpeaks(cleaned, sampling_rate=sampling_rate, method='neurokit')
             rpeaks = processed_ecg['ECG_R_Peaks']
+            M = len(rpeaks)
     except:
         return None, None
 
     ecgs2save = []
     infos2save = []
 
-    offset = int((len(rpeaks) - 10 * n_segment) / (n_segment + 1))
+    offset = int((M - 10 * n_segment) / (n_segment + 1))
     if offset >= 0:
         start = 0 + offset
     else:
@@ -328,7 +343,7 @@ def slide_and_cut_beat_aligned(data, n_segment=1, window_size=3000, sampling_rat
 
         start_ind = start + j * (10 + offset)
 
-        for i in range(start_ind, len(rpeaks) - 1):
+        for i in range(start_ind, M - 1):
             if not seg_with_r:
                 key = str(i+1)
                 seg_values = ecg_segments[key].values
