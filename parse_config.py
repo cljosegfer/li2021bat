@@ -97,6 +97,46 @@ class ConfigParser:
         modification = {opt.target: getattr(args, _get_opt_name(opt.flags)) for opt in options}
         return cls(config, resume, modification)
 
+    @classmethod
+    def for_notebook(cls, args, options=''):
+        """
+        Initialize this class from some cli arguments. Used in train, test.
+        """
+        for opt in options:
+            args.add_argument(*opt.flags, default=None, type=opt.type)
+        if not isinstance(args, tuple):
+            args = args.parse_args(args = '-c train_beat_aligned_swin_transformer.json -d 0 -s 1'.split())
+
+        if args.device is not None:
+            os.environ["CUDA_VISIBLE_DEVICES"] = args.device
+
+        if args.seed is not None:
+            # fix random seeds for reproducibility
+            SEED = args.seed
+            torch.manual_seed(SEED)
+            torch.backends.cudnn.deterministic = True
+            torch.backends.cudnn.benchmark = False
+            np.random.seed(SEED)
+
+        if args.resume is not None:
+            resume = Path(args.resume)
+            cfg_fname = resume.parent / 'config.json'
+        else:
+            msg_no_cfg = "Configuration file need to be specified. Add '-c config.json', for example."
+            assert args.config is not None, msg_no_cfg
+            resume = None
+            cfg_fname = Path(args.config)
+
+        config = read_json(cfg_fname)
+        if args.config and resume:
+            # update new config for fine-tuning
+            config.update(read_json(args.config))
+        if args.only_test is not None:
+            config['only_test'] = args.only_test
+        # parse custom cli options into dictionary
+        modification = {opt.target: getattr(args, _get_opt_name(opt.flags)) for opt in options}
+        return cls(config, resume, modification)
+
     def init_obj(self, name, module, *args, **kwargs):
         """
         Finds a function handle with the name given as 'type' in config, and returns the

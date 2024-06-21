@@ -33,9 +33,15 @@ n_lead = 12
 n_segment = 10
 beat_length = 400
 
-h5f = h5py.File('data/challenge2020.h5', 'w')
-X = h5f.create_dataset('recording', (num_files, n_lead, n_segment, beat_length), dtype='f8')
-r = h5f.create_dataset('ratio', (num_files, 1, n_segment), dtype='f8')
+# h5f = h5py.File('data/challenge2020.h5', 'w')
+# X = h5f.create_dataset('recording', (num_files, n_lead, n_segment, beat_length), dtype='f8')
+# r = h5f.create_dataset('ratio', (num_files, 1, n_segment), dtype='f8')
+
+save_dir = 'data'
+recordings2save = np.memmap(os.path.join(save_dir, 'recordings_' + str(5000) + '_' + str(500) + '_' + str(False) + '.npy'), 
+                            dtype = np.float32, mode = 'w+', shape = (num_files, n_lead, n_segment, beat_length))
+ratio2save = np.memmap(os.path.join(save_dir, 'info_' + str(5000) + '_' + str(500)  + '_' + str(False) + '.npy'), 
+                       dtype = np.float32, mode = 'w+', shape = (num_files, 1, n_segment))
 
 for i in tqdm(range(num_files)):
     # print('{}/{}'.format(i + 1, num_files))
@@ -49,11 +55,15 @@ for i in tqdm(range(num_files)):
     try:
         recording, info2save = slide_and_cut_beat_aligned(recording, 1, 5000, 500,
                                                       seg_with_r=False, beat_length=400)
-        X[i, :, :, :] = np.transpose(recording, (0, 2, 1, 3))
-        r[i, :, :] = info2save
+        # X[i, :, :, :] = np.transpose(recording, (0, 2, 1, 3))
+        # r[i, :, :] = info2save
+        recordings2save[i, :, :, :] = np.transpose(recording, (0, 2, 1, 3))
+        ratio2save[i, :, :] = info2save
     except:
         print('skipping file: {}, idx: {}'.format(name, i))
         error.append(name)
+        recordings2save[i, :, :, :] = np.zeros(shape = (1, n_lead, n_segment, beat_length))
+        ratio2save[i, :, :] = np.zeros(shape = (1, 1, n_segment))
         continue
     # print(recording)
     # print(info2save)
@@ -70,5 +80,9 @@ for i in tqdm(range(num_files)):
 # np.save(os.path.join(save_dir, 'info_' + str(5000) + '_' + str(
 #                 500)  + '_' + str(False) + '.npy'), ratio2save)
 
-h5f.close()
+# h5f.close()
+
+recordings2save.flush()
+ratio2save.flush()
+
 print('done')

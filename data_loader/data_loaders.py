@@ -4,6 +4,7 @@ from base import BaseDataLoader
 from data_loader.util import *
 import augmentation.augmentation as module_augmentation
 
+from tqdm import tqdm
 
 class ChallengeDataLoader_beat_aligned_data(BaseDataLoader):
     """
@@ -83,16 +84,21 @@ class ChallengeDataLoader_beat_aligned_data(BaseDataLoader):
         for cla in G12ECG_excluded_classes:
             G12ECG_class_weight[classes.index(cla)] = 0
 
-        recordings_saved = np.load(os.path.join('/data/ecg/challenge2020/data/recordings_' + str(5000) + '_' + str(
+        recordings_saved = np.load(os.path.join('data/recordings_' + str(5000) + '_' + str(
             500) + '_' + str(False) + '.npy'))
-        ratio_saved = np.load(os.path.join('/data/ecg/challenge2020/data/info_' + str(5000) + '_' + str(
+        ratio_saved = np.load(os.path.join('data/info_' + str(5000) + '_' + str(
             500) + '_' + str(False) + '.npy'))
+        # recordings_saved = np.memmap(os.path.join('data/recordings_' + str(5000) + '_' + str(
+        #     500) + '_' + str(False) + '.npy'), mode='r')
+        # ratio_saved = np.memmap(os.path.join('data/info_' + str(5000) + '_' + str(
+        #     500) + '_' + str(False) + '.npy'), mode='r')
 
         if load_saved_data is False:
 
             ### preprocess data and label
-            for i in range(num_files):
-                print('{}/{}'.format(i+1, num_files))
+            # for i in tqdm(range(num_files)):
+            for i in tqdm(range(100)):
+                # print('{}/{}'.format(i+1, num_files))
                 recording, header, name = load_challenge_data(label_files[i], label_dir)
                 if name[0] == 'S' or name[0] == 'I': # PTB or St.P dataset
                     continue
@@ -232,6 +238,7 @@ class ChallengeDataLoader_beat_aligned_data(BaseDataLoader):
             leads_index = [0, 1, 6, 7, 8, 9, 10, 11]
 
         ### different leads in the same shape
+        print(X_train.shape, X_val.shape)
         X_train_tmp = X_train[:, leads_index, :, :]
         X_val_tmp = X_val[:, leads_index, :, :]
 
