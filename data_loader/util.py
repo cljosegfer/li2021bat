@@ -677,3 +677,36 @@ class CustomTensorDataset(Dataset):
 
     def __len__(self):
         return self.tensors[0].size(0)
+
+class CustomTensorDataset_BeatAligned_h5(Dataset):
+    """TensorDataset with support of transforms.
+    """
+    def __init__(self, database, split_idx, transform=None, p=0.5):
+        # assert all(tensors[0].size(0) == tensor.size(0) for tensor in tensors)
+        self.database = database
+        self.split_idx = split_idx
+        self.transform = transform
+        self.p = p
+        self.leads_index = [0, 1, 6, 7, 8, 9, 10, 11]
+
+    def __getitem__(self, index):
+        # x = self.tensors[0][0][index]
+        # x2 = self.tensors[0][1][index]
+        # torch.randn(1)
+        x = self.database['recording'][self.split_idx[index], self.leads_index, :, :]
+        x2 = self.database['ratio'][self.split_idx[index]]
+
+        if self.transform:
+            if torch.rand(1) >= self.p:
+                x = self.transform(x)
+
+        # y = self.tensors[1][index]
+        # w = self.tensors[2][index]
+        y = self.database['label'][self.split_idx[index]]
+        w = self.database['weight'][self.split_idx[index]]
+
+        return [x, x2], y, w
+
+    def __len__(self):
+        # return self.tensors[0][0].size(0)
+        return len(self.split_idx)

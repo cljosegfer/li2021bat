@@ -12,7 +12,7 @@ class BaseDataLoader(DataLoader):
     Base class for all data loaders
     """
 
-    def __init__(self, train_dataset, val_dataset, test_dataset,  batch_size, shuffle, num_workers,
+    def __init__(self, train_dataset, val_dataset, test_dataset, batch_size, shuffle, num_workers,
                  collate_fn=default_collate, pin_memory=True):
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset

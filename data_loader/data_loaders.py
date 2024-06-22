@@ -6,6 +6,8 @@ import augmentation.augmentation as module_augmentation
 
 from tqdm import tqdm
 
+import h5py
+
 class ChallengeDataLoader_beat_aligned_data(BaseDataLoader):
     """
     challenge2020 data loading
@@ -96,8 +98,7 @@ class ChallengeDataLoader_beat_aligned_data(BaseDataLoader):
         if load_saved_data is False:
 
             ### preprocess data and label
-            # for i in tqdm(range(num_files)):
-            for i in tqdm(range(100)):
+            for i in tqdm(range(num_files)):
                 # print('{}/{}'.format(i+1, num_files))
                 recording, header, name = load_challenge_data(label_files[i], label_dir)
                 if name[0] == 'S' or name[0] == 'I': # PTB or St.P dataset
@@ -487,6 +488,61 @@ class ChallengeDataLoader(BaseDataLoader):
         self.valid_data_loader.file_names = file_names
         self.valid_data_loader.idx = val_index
 
+
+    def normalization(self, X):
+        return X
+
+class ChallengeDataLoader_beat_aligned_data_h5(BaseDataLoader):
+    """
+    challenge2020 data loading
+    """
+
+    def __init__(self, label_dir, split_index, batch_size, shuffle=True, num_workers=0, resample_Fs=300,
+                 window_size=3000, n_segment=1, normalization=False, augmentations=None, p=0.5, _25classes=False,
+                 lead_number=12, save_data=False, load_saved_data=True, save_dir=None, seg_with_r=False, beat_length=400):
+
+        split_idx = loadmat(split_index)
+        train_index, val_index, test_index = split_idx['train_index'], split_idx['val_index'], split_idx['test_index']
+        train_index = train_index.reshape((train_index.shape[1],))
+        val_index = val_index.reshape((val_index.shape[1],))
+
+        self.hdf5_file = h5py.File('data/challenge2020.h5', 'r')
+
+        # leads_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        # if lead_number == 2:
+        #     # two leads
+        #     leads_index = [1, 10]
+        # elif lead_number == 3:
+        #     # three leads
+        #     leads_index = [0, 1, 7]
+        # elif lead_number == 6:
+        #     # six leads
+        #     leads_index = [0, 1, 2, 3, 4, 5]
+        # else:
+        #     # eight leads
+        #     leads_index = [0, 1, 6, 7, 8, 9, 10, 11]
+
+        # ### different leads in the same shape
+        # print(X_train.shape, X_val.shape)
+        # X_train_tmp = X_train[:, leads_index, :, :]
+        # X_val_tmp = X_val[:, leads_index, :, :]
+
+        if augmentations:
+            transformers = list()
+
+            for key, value in augmentations.items():
+                module_args = dict(value['args'])
+                transformers.append(getattr(module_augmentation, key)(**module_args))
+
+            train_transform = transforms.Compose(transformers)
+            self.train_dataset = CustomTensorDataset_BeatAligned_h5(database = self.hdf5_file, split_idx = train_index, 
+                                                                    transform=train_transform, p=p)
+        else:
+            self.train_dataset = CustomTensorDataset_BeatAligned_h5(database = self.hdf5_file, split_idx = train_index)
+        self.val_dataset = CustomTensorDataset_BeatAligned_h5(database = self.hdf5_file, split_idx = val_index)
+        self.test_dataset = CustomTensorDataset_BeatAligned_h5(database = self.hdf5_file, split_idx = test_index)
+
+        super().__init__(self.train_dataset, self.val_dataset, self.test_dataset, batch_size, shuffle, num_workers)
 
     def normalization(self, X):
         return X
