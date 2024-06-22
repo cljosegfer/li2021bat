@@ -31,7 +31,7 @@
     "type": "ChallengeDataLoader_beat_aligned_data_h5",
       "args": {
         "label_dir": "/home/josegfer/datasets/challenge2020/data",
-        "split_index": "process/data_split/split1.mat",
+        "split_index": "process/data_split/split1_clean.mat",
         "save_dir": "data",
         "lead_number": 8,
         "batch_size": 98,
@@ -72,7 +72,7 @@
     }
   },
   "trainer": {
-        "epochs": 1000,
+        "epochs": 3,
         "save_dir": "output/saved",
         "save_period": 1,
         "verbosity": 2,

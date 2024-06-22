@@ -157,7 +157,9 @@ class Trainer_beat_aligned_data(BaseTrainer):
         self.valid_metrics.reset()
         with torch.no_grad():
             for batch_idx, ([data, info], target, class_weights) in enumerate(self.valid_data_loader):
-                data, target, class_weights, info = data.to(self.device), target.to(self.device), class_weights.to(self.device), info.to(self.device)
+                # data, target, class_weights, info = data.to(self.device), target.to(self.device), class_weights.to(self.device), info.to(self.device)
+                data, target, class_weights, info = data.to(device=self.device, dtype=torch.float), target.to(self.device, dtype=torch.float), \
+                                                class_weights.to(self.device, dtype=torch.float), info.to(self.device, dtype=torch.float)
                 # target_coarse = target_coarse.to(device)
                 output = self.model(data, info)
 

@@ -62,20 +62,19 @@ def main(config):
     else:
         lr_scheduler = config.init_obj('lr_scheduler', torch.optim.lr_scheduler, optimizer)
 
+    # setup data_loader instances
+    data_loader = config.init_obj('data_loader', module_data)
+    valid_data_loader = data_loader.valid_data_loader
+    
     if config["only_test"] == False:
-        # setup data_loader instances
-        data_loader = config.init_obj('data_loader', module_data)
-        valid_data_loader = data_loader.valid_data_loader
-
         trainer = Trainer_beat_aligned_data(model, criterion, metrics, optimizer,
                           config=config,
                           data_loader=data_loader,
                           valid_data_loader=valid_data_loader,
                           lr_scheduler=lr_scheduler)
         trainer.train()
-
     evaluater = Evaluater_beat_aligned_data(model, criterion, metrics,
-                          config=config)
+                          config=config, data_loader = data_loader)
     evaluater.evaluate()
 
 if __name__ == '__main__':

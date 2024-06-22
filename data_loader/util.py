@@ -694,7 +694,7 @@ class CustomTensorDataset_BeatAligned_h5(Dataset):
         # x2 = self.tensors[0][1][index]
         # torch.randn(1)
         x = self.database['recording'][self.split_idx[index], self.leads_index, :, :]
-        x2 = self.database['ratio'][self.split_idx[index]]
+        x2 = self.database['ratio'][self.split_idx[index], 0, :]
 
         if self.transform:
             if torch.rand(1) >= self.p:

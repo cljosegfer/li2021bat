@@ -500,11 +500,33 @@ class ChallengeDataLoader_beat_aligned_data_h5(BaseDataLoader):
     def __init__(self, label_dir, split_index, batch_size, shuffle=True, num_workers=0, resample_Fs=300,
                  window_size=3000, n_segment=1, normalization=False, augmentations=None, p=0.5, _25classes=False,
                  lead_number=12, save_data=False, load_saved_data=True, save_dir=None, seg_with_r=False, beat_length=400):
+        self.label_dir = label_dir
+        print('Loading data...')
+
+        weights_file = 'weights.csv'
+        normal_class = '426783006'
+        equivalent_classes = [['713427006', '59118001'], ['284470004', '63593006'], ['427172004', '17338001']]
+
+        # Find the label files.
+        print('Finding label...')
+        label_files = load_label_files(label_dir)
+
+        # Load the labels and classes.
+        print('Loading labels...')
+        classes, labels_onehot, labels = load_labels(label_files, normal_class,
+                                                                           equivalent_classes)
+        self.classes = classes
+
+        # Load the weights for the Challenge metric.
+        print('Loading weights...')
+        weights = load_weights(weights_file, classes)
+        self.weights = weights
 
         split_idx = loadmat(split_index)
         train_index, val_index, test_index = split_idx['train_index'], split_idx['val_index'], split_idx['test_index']
         train_index = train_index.reshape((train_index.shape[1],))
         val_index = val_index.reshape((val_index.shape[1],))
+        test_index = test_index.reshape((test_index.shape[1],))
 
         self.hdf5_file = h5py.File('data/challenge2020.h5', 'r')
 

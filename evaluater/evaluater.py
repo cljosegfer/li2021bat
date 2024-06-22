@@ -3,12 +3,14 @@ from utils import *
 import torch.nn as nn
 from data_loader.util import *
 
+from tqdm import tqdm
+
 class Evaluater_beat_aligned_data(BaseEvaluater):
     """
     Evaluater class
     """
 
-    def __init__(self, model, criterion, metric_ftns, config, checkpoint_dir=None, result_dir=None):
+    def __init__(self, model, criterion, metric_ftns, config, data_loader, checkpoint_dir=None, result_dir=None):
         super().__init__(model, criterion, metric_ftns, config, checkpoint_dir, result_dir)
 
         self.config = config
@@ -24,6 +26,7 @@ class Evaluater_beat_aligned_data(BaseEvaluater):
         self.save_dir = config["data_loader"]["args"]["save_dir"]
         self.seg_with_r = config["data_loader"]["args"]["seg_with_r"]
         self.sigmoid = nn.Sigmoid()
+        self.data_loader = data_loader
 
         split_idx = loadmat(self.split_index)
         train_index, val_index, test_index = split_idx['train_index'], split_idx['val_index'], split_idx['test_index']
@@ -45,6 +48,12 @@ class Evaluater_beat_aligned_data(BaseEvaluater):
             self.leads_index = [0, 1, 6, 7, 8, 9, 10, 11]
         else:
             self.leads_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    def _to_np(self, tensor):
+        if self.device.type == 'cuda':
+            return tensor.cpu().detach().numpy()
+        else:
+            return tensor.detach().numpy()
 
     def evaluate(self):
         """
@@ -78,54 +87,70 @@ class Evaluater_beat_aligned_data(BaseEvaluater):
         self.indices = indices
         num_files = len(label_files)
 
-        output_logits = []
-        targets = []
+        # output_logits = []
+        # targets = []
 
-        recordings_saved = np.load(os.path.join('/data/ecg/challenge2020/data/recordings_' + str(5000) + '_' + str(
-            500) + '_' + str(False) + '.npy'))
-        ratio_saved = np.load(os.path.join('/data/ecg/challenge2020/data/info_' + str(5000) + '_' + str(
-            500) + '_' + str(False) + '.npy'))
+        # recordings_saved = np.load(os.path.join('/data/ecg/challenge2020/data/recordings_' + str(5000) + '_' + str(
+        #     500) + '_' + str(False) + '.npy'))
+        # ratio_saved = np.load(os.path.join('/data/ecg/challenge2020/data/info_' + str(5000) + '_' + str(
+        #     500) + '_' + str(False) + '.npy'))
 
-        for i in range(num_files):
-            recording, header, name = load_challenge_data(label_files[i], self.label_dir)
-            if i in self.test_index and name[0] != 'A' and name[0] != 'Q':
-                print('{}/{}'.format(i + 1, num_files))
+        # for i in range(num_files):
+        #     recording, header, name = load_challenge_data(label_files[i], self.label_dir)
+        #     if i in self.test_index and name[0] != 'A' and name[0] != 'Q':
+        #         print('{}/{}'.format(i + 1, num_files))
 
-                recording = [recordings_saved[i]]
-                info2save = ratio_saved[i]
-                if info2save.sum() <= 0:
-                    continue
+        #         recording = [recordings_saved[i]]
+        #         info2save = ratio_saved[i]
+        #         if info2save.sum() <= 0:
+        #             continue
 
-                if recording is None:
-                    continue
+        #         if recording is None:
+        #             continue
 
-                data, info = torch.tensor(recording), torch.tensor(info2save)
+        #         data, info = torch.tensor(recording), torch.tensor(info2save)
 
-                data = data[:, self.leads_index, :, :]
-                # info -= self.train_info.mean()
-                # info /= self.train_info.std()
+        #         data = data[:, self.leads_index, :, :]
+        #         # info -= self.train_info.mean()
+        #         # info /= self.train_info.std()
 
-                data, info = data.to(self.device, dtype=torch.float), info.to(self.device, dtype=torch.float)
+        #         data, info = data.to(self.device, dtype=torch.float), info.to(self.device, dtype=torch.float)
+        #         output = self.model(data, info)
+        #         output_logit = torch.sigmoid(output)
+        #         output_logit = output_logit.detach().cpu().numpy()
+        #         output_logit = np.mean(output_logit, axis=0)
+
+        #         output_logits.append(output_logit)
+        #         targets.append(labels_onehot[i])
+
+        # output_logits = np.array(output_logits)
+        # targets = np.array(targets)
+
+        # for met in self.metric_ftns:
+        #     self.test_metrics.update(met.__name__, met(output_logits, targets))
+
+        self.model.eval()
+        self.test_metrics.reset()
+        with torch.no_grad():
+            for batch_idx, ([data, info], target, class_weights) in tqdm(enumerate(self.data_loader.test_data_loader)):
+                # data, target, class_weights, info = data.to(self.device), target.to(self.device), class_weights.to(self.device), info.to(self.device)
+                data, target, class_weights, info = data.to(device=self.device, dtype=torch.float), target.to(self.device, dtype=torch.float), \
+                                                class_weights.to(self.device, dtype=torch.float), info.to(self.device, dtype=torch.float)
+                # target_coarse = target_coarse.to(device)
                 output = self.model(data, info)
-                output_logit = torch.sigmoid(output)
-                output_logit = output_logit.detach().cpu().numpy()
-                output_logit = np.mean(output_logit, axis=0)
 
-                output_logits.append(output_logit)
-                targets.append(labels_onehot[i])
+                output_logit = self.sigmoid(output)
+                output_logit = self._to_np(output_logit)
+                target = self._to_np(target)
 
-        output_logits = np.array(output_logits)
-        targets = np.array(targets)
-
-        for met in self.metric_ftns:
-            self.test_metrics.update(met.__name__, met(output_logits, targets))
+                for met in self.metric_ftns:
+                    self.test_metrics.update(met.__name__, met(output_logit, target))
 
         result = self.test_metrics.result()
 
         # print logged informations to the screen
         for key, value in result.items():
             self.logger.info('    {:15s}: {}'.format(str(key), value))
-
 
 class Evaluater(BaseEvaluater):
     """

@@ -1,0 +1,561 @@
+torch.cuda.device_count():  1
+CUDA_VISIBLE_DEVICES:  0
+beat_aligned_transformer(
+  (patch_embed): PatchEmbed(
+    (proj): Conv2d(8, 95, kernel_size=(1, 5), stride=(1, 5))
+  )
+  (pos_drop): Dropout(p=0.0, inplace=False)
+  (layers): ModuleList(
+    (0): BasicLayer(
+      dim=96, input_resolution=80, depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=96, input_resolution=80, num_heads=8, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=96, window_size=(5, 5), num_heads=8
+            (qkv): Linear(in_features=96, out_features=288, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=96, out_features=96, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=96, out_features=384, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=384, out_features=96, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=96, input_resolution=80, num_heads=8, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=96, window_size=(5, 5), num_heads=8
+            (qkv): Linear(in_features=96, out_features=288, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=96, out_features=96, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=96, out_features=384, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=384, out_features=96, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): Sequential(
+        (0): Conv1d(96, 192, kernel_size=(7,), stride=(1,), padding=(3,))
+        (1): ChanNorm()
+        (2): MaxPool1d(kernel_size=7, stride=2, padding=3, dilation=1, ceil_mode=False)
+      )
+    )
+    (1): BasicLayer(
+      dim=192, input_resolution=40, depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=192, input_resolution=40, num_heads=16, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=192, window_size=(5, 5), num_heads=16
+            (qkv): Linear(in_features=192, out_features=576, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=192, out_features=192, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=192, out_features=768, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=768, out_features=192, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=192, input_resolution=40, num_heads=16, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=192, window_size=(5, 5), num_heads=16
+            (qkv): Linear(in_features=192, out_features=576, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=192, out_features=192, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=192, out_features=768, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=768, out_features=192, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): Sequential(
+        (0): Conv1d(192, 384, kernel_size=(7,), stride=(1,), padding=(3,))
+        (1): ChanNorm()
+        (2): MaxPool1d(kernel_size=7, stride=2, padding=3, dilation=1, ceil_mode=False)
+      )
+    )
+    (2): BasicLayer(
+      dim=384, input_resolution=20, depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=384, input_resolution=20, num_heads=32, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=384, window_size=(5, 5), num_heads=32
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=384, input_resolution=20, num_heads=32, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=384, window_size=(5, 5), num_heads=32
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): Sequential(
+        (0): Conv1d(384, 768, kernel_size=(7,), stride=(1,), padding=(3,))
+        (1): ChanNorm()
+        (2): MaxPool1d(kernel_size=7, stride=2, padding=3, dilation=1, ceil_mode=False)
+      )
+    )
+    (3): BasicLayer(
+      dim=768, input_resolution=10, depth=6
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): Sequential(
+        (0): Conv1d(768, 1536, kernel_size=(7,), stride=(1,), padding=(3,))
+        (1): ChanNorm()
+        (2): MaxPool1d(kernel_size=7, stride=2, padding=3, dilation=1, ceil_mode=False)
+      )
+    )
+    (4): BasicLayer(
+      dim=1536, input_resolution=5, depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=1536, input_resolution=5, num_heads=128, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=1536, window_size=(5, 5), num_heads=128
+            (qkv): Linear(in_features=1536, out_features=4608, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=1536, out_features=1536, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=1536, out_features=6144, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=6144, out_features=1536, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=1536, input_resolution=5, num_heads=128, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=1536, window_size=(5, 5), num_heads=128
+            (qkv): Linear(in_features=1536, out_features=4608, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=1536, out_features=1536, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=1536, out_features=6144, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=6144, out_features=1536, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+    )
+  )
+  (global_attn): Attention(
+    (qkv): Linear(in_features=1536, out_features=4608, bias=False)
+    (attn_drop): Dropout(p=0.0, inplace=False)
+    (proj): Linear(in_features=1536, out_features=1536, bias=True)
+    (proj_drop): Dropout(p=0.0, inplace=False)
+  )
+  (norm1): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+  (norm2): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+  (mlp): Mlp(
+    (fc1): Linear(in_features=1536, out_features=3072, bias=True)
+    (act): GELU()
+    (fc2): Linear(in_features=3072, out_features=1536, bias=True)
+    (drop): Dropout(p=0.0, inplace=False)
+  )
+  (drop_path): Identity()
+  (norm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+  (chnorm): ChanNorm()
+  (avgpool): AdaptiveAvgPool1d(output_size=1)
+  (maxpool): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (head): Linear(in_features=1536, out_features=108, bias=True)
+  (head_coarse): Linear(in_features=768, out_features=8, bias=True)
+)
+Finding label...
+Loading labels...
+num_files: 42976
+Loading weights...
+/home/josegfer/li2021bat
+Loading data...
+Finding label...
+Loading labels...
+Loading weights...
+/home/josegfer/li2021bat
+Train Epoch: 1 [0/34333 (0%)] Loss: 0.632498, 1 batch cost time 1.07
+Train Epoch: 1 [882/34333 (3%)] Loss: 0.167390, 1 batch cost time 0.90
+Train Epoch: 1 [1764/34333 (5%)] Loss: 0.175398, 1 batch cost time 0.90
+Train Epoch: 1 [2646/34333 (8%)] Loss: 0.139038, 1 batch cost time 0.90
+Train Epoch: 1 [3528/34333 (10%)] Loss: 0.191182, 1 batch cost time 0.90
+Train Epoch: 1 [4410/34333 (13%)] Loss: 0.173378, 1 batch cost time 0.90
+Train Epoch: 1 [5292/34333 (15%)] Loss: 0.175518, 1 batch cost time 0.90
+Train Epoch: 1 [6174/34333 (18%)] Loss: 0.169375, 1 batch cost time 0.90
+Train Epoch: 1 [7056/34333 (21%)] Loss: 0.163913, 1 batch cost time 0.90
+Train Epoch: 1 [7938/34333 (23%)] Loss: 0.171231, 1 batch cost time 0.90
+Train Epoch: 1 [8820/34333 (26%)] Loss: 0.171006, 1 batch cost time 0.90
+Train Epoch: 1 [9702/34333 (28%)] Loss: 0.177077, 1 batch cost time 0.90
+Train Epoch: 1 [10584/34333 (31%)] Loss: 0.185943, 1 batch cost time 0.90
+Train Epoch: 1 [11466/34333 (33%)] Loss: 0.150567, 1 batch cost time 0.90
+Train Epoch: 1 [12348/34333 (36%)] Loss: 0.172188, 1 batch cost time 0.90
+Train Epoch: 1 [13230/34333 (39%)] Loss: 0.175373, 1 batch cost time 0.90
+Train Epoch: 1 [14112/34333 (41%)] Loss: 0.160945, 1 batch cost time 0.92
+Train Epoch: 1 [14994/34333 (44%)] Loss: 0.161441, 1 batch cost time 0.90
+Train Epoch: 1 [15876/34333 (46%)] Loss: 0.157642, 1 batch cost time 0.91
+Train Epoch: 1 [16758/34333 (49%)] Loss: 0.143302, 1 batch cost time 0.90
+Train Epoch: 1 [17640/34333 (51%)] Loss: 0.149009, 1 batch cost time 0.90
+Train Epoch: 1 [18522/34333 (54%)] Loss: 0.147311, 1 batch cost time 0.90
+Train Epoch: 1 [19404/34333 (57%)] Loss: 0.147650, 1 batch cost time 0.90
+Train Epoch: 1 [20286/34333 (59%)] Loss: 0.145115, 1 batch cost time 0.90
+Train Epoch: 1 [21168/34333 (62%)] Loss: 0.150764, 1 batch cost time 0.90
+Train Epoch: 1 [22050/34333 (64%)] Loss: 0.145154, 1 batch cost time 0.90
+Train Epoch: 1 [22932/34333 (67%)] Loss: 0.141291, 1 batch cost time 0.90
+Train Epoch: 1 [23814/34333 (69%)] Loss: 0.153538, 1 batch cost time 0.90
+Train Epoch: 1 [24696/34333 (72%)] Loss: 0.154166, 1 batch cost time 0.90
+Train Epoch: 1 [25578/34333 (74%)] Loss: 0.125435, 1 batch cost time 0.90
+Train Epoch: 1 [26460/34333 (77%)] Loss: 0.127336, 1 batch cost time 0.90
+Train Epoch: 1 [27342/34333 (80%)] Loss: 0.121674, 1 batch cost time 0.90
+Train Epoch: 1 [28224/34333 (82%)] Loss: 0.132116, 1 batch cost time 0.90
+Train Epoch: 1 [29106/34333 (85%)] Loss: 0.129232, 1 batch cost time 0.90
+Train Epoch: 1 [29988/34333 (87%)] Loss: 0.129254, 1 batch cost time 0.90
+Train Epoch: 1 [30870/34333 (90%)] Loss: 0.131821, 1 batch cost time 0.90
+Train Epoch: 1 [31752/34333 (92%)] Loss: 0.110666, 1 batch cost time 0.90
+Train Epoch: 1 [32634/34333 (95%)] Loss: 0.122628, 1 batch cost time 0.90
+Train Epoch: 1 [33516/34333 (98%)] Loss: 0.132704, 1 batch cost time 0.90
+training epoch cost 928.1957688331604 seconds
+    epoch          : 1
+    lr             : 0.0001
+    loss           : 0.1539359383710793
+    accuracy       : 0.27758017492711357
+    f_measure      : 0.07336785717513387
+    macro_f_beta_measure: 0.07294580199044641
+    macro_g_beta_measure: 0.04294947844649243
+    macro_auroc    : 0.5244301764392156
+    macro_auprc    : 0.09668479134407647
+    challenge_metric: -0.16209291490697558
+    val_loss       : 0.12058374545601912
+    val_accuracy   : 0.3547698149027052
+    val_f_measure  : 0.1840776255131668
+    val_macro_f_beta_measure: 0.1807359243390224
+    val_macro_g_beta_measure: 0.10915455481000615
+    val_macro_auroc: 0.5757089540838674
+    val_macro_auprc: 0.15974236059814276
+    val_challenge_metric: 0.12830046874380233
+Saving current best: model_best.pth ...
+Train Epoch: 2 [0/34333 (0%)] Loss: 0.119220, 1 batch cost time 0.90
+Train Epoch: 2 [882/34333 (3%)] Loss: 0.110835, 1 batch cost time 0.90
+Train Epoch: 2 [1764/34333 (5%)] Loss: 0.121353, 1 batch cost time 0.90
+Train Epoch: 2 [2646/34333 (8%)] Loss: 0.116903, 1 batch cost time 0.90
+Train Epoch: 2 [3528/34333 (10%)] Loss: 0.125324, 1 batch cost time 0.90
+Train Epoch: 2 [4410/34333 (13%)] Loss: 0.108806, 1 batch cost time 0.90
+Train Epoch: 2 [5292/34333 (15%)] Loss: 0.093748, 1 batch cost time 0.90
+Train Epoch: 2 [6174/34333 (18%)] Loss: 0.108545, 1 batch cost time 0.90
+Train Epoch: 2 [7056/34333 (21%)] Loss: 0.101991, 1 batch cost time 0.90
+Train Epoch: 2 [7938/34333 (23%)] Loss: 0.107279, 1 batch cost time 0.90
+Train Epoch: 2 [8820/34333 (26%)] Loss: 0.085635, 1 batch cost time 0.90
+Train Epoch: 2 [9702/34333 (28%)] Loss: 0.118504, 1 batch cost time 0.90
+Train Epoch: 2 [10584/34333 (31%)] Loss: 0.150966, 1 batch cost time 0.90
+Train Epoch: 2 [11466/34333 (33%)] Loss: 0.108432, 1 batch cost time 0.90
+Train Epoch: 2 [12348/34333 (36%)] Loss: 0.105586, 1 batch cost time 0.90
+Train Epoch: 2 [13230/34333 (39%)] Loss: 0.112057, 1 batch cost time 0.90
+Train Epoch: 2 [14112/34333 (41%)] Loss: 0.117824, 1 batch cost time 0.90
+Train Epoch: 2 [14994/34333 (44%)] Loss: 0.121799, 1 batch cost time 0.90
+Train Epoch: 2 [15876/34333 (46%)] Loss: 0.119529, 1 batch cost time 0.90
+Train Epoch: 2 [16758/34333 (49%)] Loss: 0.097432, 1 batch cost time 0.90
+Train Epoch: 2 [17640/34333 (51%)] Loss: 0.099609, 1 batch cost time 0.90
+Train Epoch: 2 [18522/34333 (54%)] Loss: 0.124848, 1 batch cost time 0.90
+Train Epoch: 2 [19404/34333 (57%)] Loss: 0.111400, 1 batch cost time 0.90
+Train Epoch: 2 [20286/34333 (59%)] Loss: 0.105489, 1 batch cost time 0.90
+Train Epoch: 2 [21168/34333 (62%)] Loss: 0.121567, 1 batch cost time 0.90
+Train Epoch: 2 [22050/34333 (64%)] Loss: 0.097329, 1 batch cost time 0.90
+Train Epoch: 2 [22932/34333 (67%)] Loss: 0.102106, 1 batch cost time 0.90
+Train Epoch: 2 [23814/34333 (69%)] Loss: 0.122330, 1 batch cost time 0.90
+Train Epoch: 2 [24696/34333 (72%)] Loss: 0.090094, 1 batch cost time 0.90
+Train Epoch: 2 [25578/34333 (74%)] Loss: 0.096231, 1 batch cost time 0.90
+Train Epoch: 2 [26460/34333 (77%)] Loss: 0.103233, 1 batch cost time 0.90
+Train Epoch: 2 [27342/34333 (80%)] Loss: 0.114827, 1 batch cost time 0.91
+Train Epoch: 2 [28224/34333 (82%)] Loss: 0.085652, 1 batch cost time 0.90
+Train Epoch: 2 [29106/34333 (85%)] Loss: 0.114547, 1 batch cost time 0.90
+Train Epoch: 2 [29988/34333 (87%)] Loss: 0.106047, 1 batch cost time 0.90
+Train Epoch: 2 [30870/34333 (90%)] Loss: 0.111842, 1 batch cost time 0.90
+Train Epoch: 2 [31752/34333 (92%)] Loss: 0.079115, 1 batch cost time 0.90
+Train Epoch: 2 [32634/34333 (95%)] Loss: 0.099895, 1 batch cost time 0.90
+Train Epoch: 2 [33516/34333 (98%)] Loss: 0.105867, 1 batch cost time 0.90
+training epoch cost 933.3744349479675 seconds
+    epoch          : 2
+    lr             : 0.0001
+    loss           : 0.11030702793172427
+    accuracy       : 0.37326530612244896
+    f_measure      : 0.24969439915062241
+    macro_f_beta_measure: 0.24175693278442945
+    macro_g_beta_measure: 0.1548241086854464
+    macro_auroc    : 0.6115907396942986
+    macro_auprc    : 0.21427179280503383
+    challenge_metric: 0.15179084951242713
+    val_loss       : 0.10167466363934584
+    val_accuracy   : 0.3974845752254391
+    val_f_measure  : 0.30652834181059574
+    val_macro_f_beta_measure: 0.30034681369269856
+    val_macro_g_beta_measure: 0.20132382943256036
+    val_macro_auroc: 0.6451844622985763
+    val_macro_auprc: 0.26537906405561684
+    val_challenge_metric: 0.15306947836752843
+Saving current best: model_best.pth ...
+Train Epoch: 3 [0/34333 (0%)] Loss: 0.076544, 1 batch cost time 0.90
+Train Epoch: 3 [882/34333 (3%)] Loss: 0.093871, 1 batch cost time 0.90
+Train Epoch: 3 [1764/34333 (5%)] Loss: 0.115349, 1 batch cost time 0.90
+Train Epoch: 3 [2646/34333 (8%)] Loss: 0.107353, 1 batch cost time 0.90
+Train Epoch: 3 [3528/34333 (10%)] Loss: 0.100928, 1 batch cost time 0.90
+Train Epoch: 3 [4410/34333 (13%)] Loss: 0.105942, 1 batch cost time 0.90
+Train Epoch: 3 [5292/34333 (15%)] Loss: 0.079860, 1 batch cost time 0.90
+Train Epoch: 3 [6174/34333 (18%)] Loss: 0.086284, 1 batch cost time 0.90
+Train Epoch: 3 [7056/34333 (21%)] Loss: 0.095043, 1 batch cost time 0.90
+Train Epoch: 3 [7938/34333 (23%)] Loss: 0.102020, 1 batch cost time 0.90
+Train Epoch: 3 [8820/34333 (26%)] Loss: 0.104135, 1 batch cost time 0.90
+Train Epoch: 3 [9702/34333 (28%)] Loss: 0.104942, 1 batch cost time 0.91
+Train Epoch: 3 [10584/34333 (31%)] Loss: 0.104560, 1 batch cost time 0.90
+Train Epoch: 3 [11466/34333 (33%)] Loss: 0.100025, 1 batch cost time 0.90
+Train Epoch: 3 [12348/34333 (36%)] Loss: 0.092225, 1 batch cost time 0.90
+Train Epoch: 3 [13230/34333 (39%)] Loss: 0.102615, 1 batch cost time 0.90
+Train Epoch: 3 [14112/34333 (41%)] Loss: 0.088941, 1 batch cost time 0.90
+Train Epoch: 3 [14994/34333 (44%)] Loss: 0.089145, 1 batch cost time 0.90
+Train Epoch: 3 [15876/34333 (46%)] Loss: 0.101167, 1 batch cost time 0.90
+Train Epoch: 3 [16758/34333 (49%)] Loss: 0.098036, 1 batch cost time 0.90
+Train Epoch: 3 [17640/34333 (51%)] Loss: 0.083502, 1 batch cost time 0.90
+Train Epoch: 3 [18522/34333 (54%)] Loss: 0.095474, 1 batch cost time 0.90
+Train Epoch: 3 [19404/34333 (57%)] Loss: 0.092361, 1 batch cost time 0.90
+Train Epoch: 3 [20286/34333 (59%)] Loss: 0.104538, 1 batch cost time 0.90
+Train Epoch: 3 [21168/34333 (62%)] Loss: 0.097392, 1 batch cost time 0.90
+Train Epoch: 3 [22050/34333 (64%)] Loss: 0.101687, 1 batch cost time 0.90
+Train Epoch: 3 [22932/34333 (67%)] Loss: 0.089908, 1 batch cost time 0.90
+Train Epoch: 3 [23814/34333 (69%)] Loss: 0.104702, 1 batch cost time 0.90
+Train Epoch: 3 [24696/34333 (72%)] Loss: 0.092814, 1 batch cost time 0.90
+Train Epoch: 3 [25578/34333 (74%)] Loss: 0.078824, 1 batch cost time 0.90
+Train Epoch: 3 [26460/34333 (77%)] Loss: 0.091981, 1 batch cost time 0.90
+Train Epoch: 3 [27342/34333 (80%)] Loss: 0.088525, 1 batch cost time 0.90
+Train Epoch: 3 [28224/34333 (82%)] Loss: 0.089914, 1 batch cost time 0.90
+Train Epoch: 3 [29106/34333 (85%)] Loss: 0.086605, 1 batch cost time 0.90
+Train Epoch: 3 [29988/34333 (87%)] Loss: 0.106379, 1 batch cost time 0.90
+Train Epoch: 3 [30870/34333 (90%)] Loss: 0.104491, 1 batch cost time 0.90
+Train Epoch: 3 [31752/34333 (92%)] Loss: 0.101241, 1 batch cost time 0.90
+Train Epoch: 3 [32634/34333 (95%)] Loss: 0.091689, 1 batch cost time 0.90
+Train Epoch: 3 [33516/34333 (98%)] Loss: 0.109921, 1 batch cost time 0.90
+training epoch cost 925.5007019042969 seconds
+    epoch          : 3
+    lr             : 0.0001
+    loss           : 0.09844005203672818
+    accuracy       : 0.40865889212828005
+    f_measure      : 0.318590688978389
+    macro_f_beta_measure: 0.30847281893517386
+    macro_g_beta_measure: 0.20708601133642016
+    macro_auroc    : 0.6478557755017366
+    macro_auprc    : 0.2723165304466154
+    challenge_metric: 0.24159870329338093
+    val_loss       : 0.09434041675440101
+    val_accuracy   : 0.4349786426198387
+    val_f_measure  : 0.3328982060797747
+    val_macro_f_beta_measure: 0.3245672409781651
+    val_macro_g_beta_measure: 0.22502368896824665
+    val_macro_auroc: 0.656273374648195
+    val_macro_auprc: 0.2872835475648229
+    val_challenge_metric: 0.24557009761879584
+Saving current best: model_best.pth ...
+Loading checkpoint: output/saved/models/beat_aligned_swin_transformer/0622_181034/model_best.pth ...
+Checkpoint loaded from epoch 4
+0it [00:00, ?it/s]1it [00:01,  1.34s/it]2it [00:02,  1.32s/it]3it [00:03,  1.31s/it]4it [00:05,  1.29s/it]5it [00:06,  1.29s/it]6it [00:07,  1.30s/it]7it [00:08,  1.26s/it]8it [00:10,  1.26s/it]9it [00:11,  1.25s/it]10it [00:12,  1.24s/it]11it [00:13,  1.24s/it]12it [00:15,  1.28s/it]13it [00:16,  1.30s/it]14it [00:17,  1.31s/it]15it [00:19,  1.30s/it]16it [00:20,  1.31s/it]17it [00:21,  1.30s/it]18it [00:23,  1.30s/it]19it [00:24,  1.33s/it]20it [00:25,  1.33s/it]21it [00:27,  1.34s/it]22it [00:28,  1.34s/it]23it [00:29,  1.34s/it]24it [00:31,  1.38s/it]25it [00:32,  1.36s/it]26it [00:34,  1.36s/it]27it [00:35,  1.35s/it]28it [00:36,  1.36s/it]29it [00:38,  1.35s/it]30it [00:39,  1.38s/it]31it [00:40,  1.38s/it]32it [00:42,  1.38s/it]33it [00:43,  1.37s/it]34it [00:45,  1.40s/it]35it [00:46,  1.39s/it]36it [00:47,  1.39s/it]37it [00:49,  1.40s/it]38it [00:50,  1.39s/it]39it [00:52,  1.43s/it]40it [00:53,  1.42s/it]41it [00:54,  1.41s/it]42it [00:56,  1.38s/it]43it [00:57,  1.40s/it]44it [00:59,  1.38s/it]44it [00:59,  1.34s/it]Finding label...
+Loading labels...
+Loading weights...
+/home/josegfer/li2021bat
+    loss           : 0
+    accuracy       : 0.434369202226345
+    f_measure      : 0.31206514602198043
+    macro_f_beta_measure: 0.3058148157528715
+    macro_g_beta_measure: 0.2128709313421608
+    macro_auroc    : 0.6803352229716304
+    macro_auprc    : 0.3359363288275498
+    challenge_metric: 0.2644991311677838
+
+程序运行时间：3250秒
+1317.32user 275.02system 54:24.50elapsed 48%CPU (0avgtext+0avgdata 2814240maxresident)k
+65424192inputs+8535952outputs (2271major+1641423minor)pagefaults 0swaps
