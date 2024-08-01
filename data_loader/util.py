@@ -200,6 +200,13 @@ def resample(data, header_data, resample_Fs = 300):
 
     return resample_data
 
+def just_resample(data, sample_Fs = 400, resample_Fs = 500):
+    sample_len = data.shape[0]
+    resample_len = int(sample_len * (resample_Fs / sample_Fs))
+    resample_data = signal.resample(data, resample_len, axis=1, window=None)
+
+    return resample_data
+
 def ecg_filling(ecg, sampling_rate, length):
     # try:
     ecg_single_lead = ecg[1]
