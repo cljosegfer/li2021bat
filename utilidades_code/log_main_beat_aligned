@@ -355,7 +355,7 @@ beat_aligned_transformer(
   (head_coarse): Linear(in_features=768, out_features=8, bias=True)
 )
 Loading data...
-Train Epoch: 1 [0/319902 (0%)] Loss: 0.747285, 1 batch cost time 0.69
+Train Epoch: 1 [0/319902 (0%)] Loss: 0.747285, 1 batch cost time 0.78
 Train Epoch: 1 [512/319902 (0%)] Loss: 0.076057, 1 batch cost time 0.51
 Train Epoch: 1 [1024/319902 (0%)] Loss: 0.199569, 1 batch cost time 0.51
 Train Epoch: 1 [1536/319902 (0%)] Loss: 0.102687, 1 batch cost time 0.51
@@ -505,7 +505,7 @@ Train Epoch: 1 [74752/319902 (23%)] Loss: 0.076107, 1 batch cost time 0.51
 Train Epoch: 1 [75264/319902 (24%)] Loss: 0.144576, 1 batch cost time 0.51
 Train Epoch: 1 [75776/319902 (24%)] Loss: 0.102737, 1 batch cost time 0.51
 Train Epoch: 1 [76288/319902 (24%)] Loss: 0.069603, 1 batch cost time 0.51
-Train Epoch: 1 [76800/319902 (24%)] Loss: 0.071096, 1 batch cost time 0.51
+Train Epoch: 1 [76800/319902 (24%)] Loss: 0.071096, 1 batch cost time 0.52
 Train Epoch: 1 [77312/319902 (24%)] Loss: 0.086113, 1 batch cost time 0.51
 Train Epoch: 1 [77824/319902 (24%)] Loss: 0.100249, 1 batch cost time 0.51
 Train Epoch: 1 [78336/319902 (24%)] Loss: 0.038140, 1 batch cost time 0.51
@@ -528,7 +528,7 @@ Train Epoch: 1 [86528/319902 (27%)] Loss: 0.079628, 1 batch cost time 0.51
 Train Epoch: 1 [87040/319902 (27%)] Loss: 0.061560, 1 batch cost time 0.51
 Train Epoch: 1 [87552/319902 (27%)] Loss: 0.071010, 1 batch cost time 0.51
 Train Epoch: 1 [88064/319902 (28%)] Loss: 0.119274, 1 batch cost time 0.51
-Train Epoch: 1 [88576/319902 (28%)] Loss: 0.071614, 1 batch cost time 0.52
+Train Epoch: 1 [88576/319902 (28%)] Loss: 0.071614, 1 batch cost time 0.51
 Train Epoch: 1 [89088/319902 (28%)] Loss: 0.035133, 1 batch cost time 0.51
 Train Epoch: 1 [89600/319902 (28%)] Loss: 0.062424, 1 batch cost time 0.51
 Train Epoch: 1 [90112/319902 (28%)] Loss: 0.074300, 1 batch cost time 0.51
@@ -658,7 +658,7 @@ Train Epoch: 1 [153088/319902 (48%)] Loss: 0.089846, 1 batch cost time 0.51
 Train Epoch: 1 [153600/319902 (48%)] Loss: 0.055272, 1 batch cost time 0.51
 Train Epoch: 1 [154112/319902 (48%)] Loss: 0.078671, 1 batch cost time 0.51
 Train Epoch: 1 [154624/319902 (48%)] Loss: 0.055373, 1 batch cost time 0.51
-Train Epoch: 1 [155136/319902 (48%)] Loss: 0.064598, 1 batch cost time 0.52
+Train Epoch: 1 [155136/319902 (48%)] Loss: 0.064598, 1 batch cost time 0.51
 Train Epoch: 1 [155648/319902 (49%)] Loss: 0.061472, 1 batch cost time 0.51
 Train Epoch: 1 [156160/319902 (49%)] Loss: 0.069352, 1 batch cost time 0.51
 Train Epoch: 1 [156672/319902 (49%)] Loss: 0.076496, 1 batch cost time 0.51
@@ -685,7 +685,7 @@ Train Epoch: 1 [166912/319902 (52%)] Loss: 0.060137, 1 batch cost time 0.51
 Train Epoch: 1 [167424/319902 (52%)] Loss: 0.025219, 1 batch cost time 0.51
 Train Epoch: 1 [167936/319902 (52%)] Loss: 0.029026, 1 batch cost time 0.51
 Train Epoch: 1 [168448/319902 (53%)] Loss: 0.037608, 1 batch cost time 0.51
-Train Epoch: 1 [168960/319902 (53%)] Loss: 0.046245, 1 batch cost time 0.52
+Train Epoch: 1 [168960/319902 (53%)] Loss: 0.046245, 1 batch cost time 0.51
 Train Epoch: 1 [169472/319902 (53%)] Loss: 0.054518, 1 batch cost time 0.51
 Train Epoch: 1 [169984/319902 (53%)] Loss: 0.044668, 1 batch cost time 0.51
 Train Epoch: 1 [170496/319902 (53%)] Loss: 0.049283, 1 batch cost time 0.51
@@ -717,7 +717,7 @@ Train Epoch: 1 [183296/319902 (57%)] Loss: 0.043812, 1 batch cost time 0.51
 Train Epoch: 1 [183808/319902 (57%)] Loss: 0.094415, 1 batch cost time 0.51
 Train Epoch: 1 [184320/319902 (58%)] Loss: 0.020079, 1 batch cost time 0.51
 Train Epoch: 1 [184832/319902 (58%)] Loss: 0.038374, 1 batch cost time 0.51
-Train Epoch: 1 [185344/319902 (58%)] Loss: 0.046990, 1 batch cost time 0.52
+Train Epoch: 1 [185344/319902 (58%)] Loss: 0.046990, 1 batch cost time 0.51
 Train Epoch: 1 [185856/319902 (58%)] Loss: 0.019992, 1 batch cost time 0.51
 Train Epoch: 1 [186368/319902 (58%)] Loss: 0.112757, 1 batch cost time 0.51
 Train Epoch: 1 [186880/319902 (58%)] Loss: 0.038204, 1 batch cost time 0.51
@@ -739,7 +739,7 @@ Train Epoch: 1 [194560/319902 (61%)] Loss: 0.055024, 1 batch cost time 0.51
 Train Epoch: 1 [195072/319902 (61%)] Loss: 0.061153, 1 batch cost time 0.51
 Train Epoch: 1 [195584/319902 (61%)] Loss: 0.026171, 1 batch cost time 0.51
 Train Epoch: 1 [196096/319902 (61%)] Loss: 0.030993, 1 batch cost time 0.51
-Train Epoch: 1 [196608/319902 (61%)] Loss: 0.046257, 1 batch cost time 0.51
+Train Epoch: 1 [196608/319902 (61%)] Loss: 0.046257, 1 batch cost time 0.52
 Train Epoch: 1 [197120/319902 (62%)] Loss: 0.073787, 1 batch cost time 0.51
 Train Epoch: 1 [197632/319902 (62%)] Loss: 0.041341, 1 batch cost time 0.51
 Train Epoch: 1 [198144/319902 (62%)] Loss: 0.051510, 1 batch cost time 0.51
@@ -751,7 +751,7 @@ Train Epoch: 1 [200704/319902 (63%)] Loss: 0.052453, 1 batch cost time 0.51
 Train Epoch: 1 [201216/319902 (63%)] Loss: 0.086804, 1 batch cost time 0.51
 Train Epoch: 1 [201728/319902 (63%)] Loss: 0.057785, 1 batch cost time 0.51
 Train Epoch: 1 [202240/319902 (63%)] Loss: 0.031077, 1 batch cost time 0.51
-Train Epoch: 1 [202752/319902 (63%)] Loss: 0.068540, 1 batch cost time 0.52
+Train Epoch: 1 [202752/319902 (63%)] Loss: 0.068540, 1 batch cost time 0.51
 Train Epoch: 1 [203264/319902 (64%)] Loss: 0.038123, 1 batch cost time 0.51
 Train Epoch: 1 [203776/319902 (64%)] Loss: 0.076433, 1 batch cost time 0.51
 Train Epoch: 1 [204288/319902 (64%)] Loss: 0.056175, 1 batch cost time 0.51
@@ -769,7 +769,7 @@ Train Epoch: 1 [209920/319902 (66%)] Loss: 0.029257, 1 batch cost time 0.51
 Train Epoch: 1 [210432/319902 (66%)] Loss: 0.030692, 1 batch cost time 0.51
 Train Epoch: 1 [210944/319902 (66%)] Loss: 0.072217, 1 batch cost time 0.51
 Train Epoch: 1 [211456/319902 (66%)] Loss: 0.028846, 1 batch cost time 0.51
-Train Epoch: 1 [211968/319902 (66%)] Loss: 0.027617, 1 batch cost time 0.52
+Train Epoch: 1 [211968/319902 (66%)] Loss: 0.027617, 1 batch cost time 0.51
 Train Epoch: 1 [212480/319902 (66%)] Loss: 0.055717, 1 batch cost time 0.51
 Train Epoch: 1 [212992/319902 (67%)] Loss: 0.025495, 1 batch cost time 0.51
 Train Epoch: 1 [213504/319902 (67%)] Loss: 0.012584, 1 batch cost time 0.51
@@ -847,7 +847,7 @@ Train Epoch: 1 [249856/319902 (78%)] Loss: 0.029529, 1 batch cost time 0.51
 Train Epoch: 1 [250368/319902 (78%)] Loss: 0.039296, 1 batch cost time 0.51
 Train Epoch: 1 [250880/319902 (78%)] Loss: 0.057289, 1 batch cost time 0.51
 Train Epoch: 1 [251392/319902 (79%)] Loss: 0.060857, 1 batch cost time 0.51
-Train Epoch: 1 [251904/319902 (79%)] Loss: 0.050721, 1 batch cost time 0.52
+Train Epoch: 1 [251904/319902 (79%)] Loss: 0.050721, 1 batch cost time 0.51
 Train Epoch: 1 [252416/319902 (79%)] Loss: 0.047994, 1 batch cost time 0.51
 Train Epoch: 1 [252928/319902 (79%)] Loss: 0.054510, 1 batch cost time 0.51
 Train Epoch: 1 [253440/319902 (79%)] Loss: 0.024150, 1 batch cost time 0.51
@@ -861,7 +861,7 @@ Train Epoch: 1 [257024/319902 (80%)] Loss: 0.040953, 1 batch cost time 0.51
 Train Epoch: 1 [257536/319902 (81%)] Loss: 0.039575, 1 batch cost time 0.51
 Train Epoch: 1 [258048/319902 (81%)] Loss: 0.034692, 1 batch cost time 0.51
 Train Epoch: 1 [258560/319902 (81%)] Loss: 0.033013, 1 batch cost time 0.51
-Train Epoch: 1 [259072/319902 (81%)] Loss: 0.028616, 1 batch cost time 0.52
+Train Epoch: 1 [259072/319902 (81%)] Loss: 0.028616, 1 batch cost time 0.51
 Train Epoch: 1 [259584/319902 (81%)] Loss: 0.040072, 1 batch cost time 0.51
 Train Epoch: 1 [260096/319902 (81%)] Loss: 0.035334, 1 batch cost time 0.51
 Train Epoch: 1 [260608/319902 (81%)] Loss: 0.061729, 1 batch cost time 0.51
@@ -977,10 +977,10 @@ Train Epoch: 1 [316416/319902 (99%)] Loss: 0.039538, 1 batch cost time 0.51
 Train Epoch: 1 [316928/319902 (99%)] Loss: 0.055232, 1 batch cost time 0.51
 Train Epoch: 1 [317440/319902 (99%)] Loss: 0.052439, 1 batch cost time 0.51
 Train Epoch: 1 [317952/319902 (99%)] Loss: 0.055945, 1 batch cost time 0.51
-Train Epoch: 1 [318464/319902 (100%)] Loss: 0.034546, 1 batch cost time 0.52
+Train Epoch: 1 [318464/319902 (100%)] Loss: 0.034546, 1 batch cost time 0.51
 Train Epoch: 1 [318976/319902 (100%)] Loss: 0.056619, 1 batch cost time 0.51
 Train Epoch: 1 [319488/319902 (100%)] Loss: 0.024729, 1 batch cost time 0.51
-training epoch cost 9006.68090891838 seconds
+training epoch cost 8305.0107254982 seconds
     epoch          : 1
     lr             : 0.0001
     loss           : 0.061760955991982974
@@ -989,26 +989,11 @@ training epoch cost 9006.68090891838 seconds
     val_loss       : 0.033807992906076834
     val_accuracy   : 0.9268391927083334
     val_f_measure  : 0.32126307720057745
-Warning: Metric 'val_challenge_metric' is not found. Model performance monitoring is disabled.
-Loading checkpoint: output/saved/models/beat_aligned_swin_transformer_CODE/0803_034253/model_best.pth ...
-Traceback (most recent call last):
-  File "main_beat_aligned.py", line 106, in <module>
-    main(config)
-  File "main_beat_aligned.py", line 78, in main
-    evaluater = Evaluater_beat_aligned_data(model, criterion, metrics,
-  File "/home/josegfer/li2021bat/evaluater/evaluater.py", line 327, in __init__
-    super().__init__(model, criterion, metric_ftns, config, checkpoint_dir, result_dir)
-  File "/home/josegfer/li2021bat/base/base_evaluater.py", line 40, in __init__
-    self._resume_checkpoint(self.checkpoint_dir / 'model_best.pth')
-  File "/home/josegfer/li2021bat/base/base_evaluater.py", line 75, in _resume_checkpoint
-    checkpoint = torch.load(resume_path)
-  File "/home/josegfer/miniconda3/envs/li2021bat/lib/python3.8/site-packages/torch/serialization.py", line 581, in load
-    with _open_file_like(f, 'rb') as opened_file:
-  File "/home/josegfer/miniconda3/envs/li2021bat/lib/python3.8/site-packages/torch/serialization.py", line 230, in _open_file_like
-    return _open_file(name_or_buffer, mode)
-  File "/home/josegfer/miniconda3/envs/li2021bat/lib/python3.8/site-packages/torch/serialization.py", line 211, in __init__
-    super(_open_file, self).__init__(open(name, mode))
-FileNotFoundError: [Errno 2] No such file or directory: 'output/saved/models/beat_aligned_swin_transformer_CODE/0803_034253/model_best.pth'
-Command exited with non-zero status 1
-3272.52user 745.57system 2:34:21elapsed 43%CPU (0avgtext+0avgdata 2808892maxresident)k
-120673240inputs+2704outputs (1329major+652960minor)pagefaults 0swaps
+Saving current best: model_best.pth ...
+Loading checkpoint: output/saved/models/beat_aligned_swin_transformer_CODE/0803_064810/model_best.pth ...
+Checkpoint loaded from epoch 2
+0it [00:00, ?it/s]1it [00:00,  3.84it/s]2it [00:00,  4.14it/s]3it [00:00,  4.37it/s]4it [00:00,  4.56it/s]5it [00:01,  4.70it/s]6it [00:01,  4.80it/s]7it [00:01,  4.88it/s]8it [00:01,  4.80it/s]9it [00:01,  4.88it/s]10it [00:02,  4.93it/s]11it [00:02,  4.88it/s]12it [00:02,  4.94it/s]13it [00:02,  4.95it/s]14it [00:02,  4.98it/s]15it [00:03,  4.95it/s]16it [00:03,  4.98it/s]17it [00:03,  5.01it/s]18it [00:03,  4.32it/s]19it [00:03,  4.52it/s]20it [00:04,  4.68it/s]21it [00:04,  4.79it/s]22it [00:04,  4.86it/s]23it [00:04,  4.93it/s]24it [00:05,  3.49it/s]25it [00:05,  3.85it/s]26it [00:05,  4.15it/s]27it [00:06,  2.92it/s]28it [00:06,  3.35it/s]29it [00:06,  3.73it/s]30it [00:06,  3.81it/s]31it [00:07,  3.47it/s]32it [00:07,  3.30it/s]33it [00:07,  3.68it/s]34it [00:07,  4.01it/s]35it [00:08,  4.28it/s]36it [00:08,  4.50it/s]37it [00:08,  4.66it/s]38it [00:08,  4.78it/s]39it [00:08,  4.75it/s]40it [00:09,  4.85it/s]41it [00:09,  4.87it/s]42it [00:09,  4.93it/s]43it [00:09,  4.97it/s]44it [00:09,  5.01it/s]45it [00:10,  5.03it/s]46it [00:10,  5.04it/s]47it [00:10,  5.06it/s]48it [00:10,  5.06it/s]49it [00:10,  5.05it/s]50it [00:11,  2.37it/s]51it [00:12,  2.80it/s]52it [00:12,  3.24it/s]53it [00:12,  3.59it/s]54it [00:12,  3.94it/s]55it [00:12,  4.22it/s]56it [00:13,  4.36it/s]57it [00:13,  4.50it/s]58it [00:13,  4.66it/s]59it [00:13,  4.70it/s]60it [00:13,  4.81it/s]61it [00:14,  4.80it/s]62it [00:14,  4.89it/s]63it [00:14,  4.94it/s]64it [00:14,  4.96it/s]65it [00:14,  4.94it/s]66it [00:15,  4.98it/s]67it [00:15,  4.92it/s]68it [00:15,  4.97it/s]69it [00:15,  4.89it/s]70it [00:15,  4.94it/s]71it [00:16,  4.99it/s]72it [00:16,  5.01it/s]73it [00:16,  5.01it/s]74it [00:16,  5.03it/s]75it [00:16,  5.04it/s]76it [00:17,  5.06it/s]77it [00:17,  5.07it/s]78it [00:17,  4.96it/s]79it [00:17,  5.00it/s]80it [00:17,  5.02it/s]81it [00:18,  4.91it/s]82it [00:18,  4.96it/s]83it [00:18,  4.98it/s]84it [00:18,  5.01it/s]85it [00:18,  5.04it/s]86it [00:19,  5.05it/s]87it [00:19,  5.06it/s]88it [00:19,  5.07it/s]89it [00:19,  4.98it/s]90it [00:19,  5.01it/s]91it [00:20,  5.03it/s]92it [00:20,  5.00it/s]93it [00:20,  5.03it/s]94it [00:20,  5.02it/s]95it [00:20,  5.04it/s]96it [00:21,  5.06it/s]97it [00:21,  5.07it/s]98it [00:21,  5.07it/s]99it [00:21,  5.04it/s]100it [00:21,  5.05it/s]101it [00:22,  5.06it/s]102it [00:22,  5.07it/s]103it [00:22,  5.07it/s]104it [00:22,  5.08it/s]105it [00:22,  4.94it/s]106it [00:23,  4.95it/s]107it [00:23,  4.99it/s]108it [00:23,  4.98it/s]109it [00:23,  5.01it/s]110it [00:23,  5.03it/s]111it [00:24,  5.05it/s]112it [00:24,  5.06it/s]113it [00:24,  5.07it/s]114it [00:24,  5.04it/s]115it [00:24,  5.05it/s]116it [00:25,  5.06it/s]117it [00:25,  4.96it/s]118it [00:25,  5.00it/s]119it [00:25,  5.03it/s]120it [00:25,  4.92it/s]121it [00:26,  4.96it/s]122it [00:26,  4.91it/s]123it [00:26,  4.96it/s]124it [00:26,  4.94it/s]125it [00:26,  4.98it/s]126it [00:27,  5.02it/s]127it [00:27,  5.03it/s]128it [00:27,  4.92it/s]129it [00:27,  4.90it/s]130it [00:27,  4.95it/s]131it [00:28,  4.90it/s]132it [00:28,  4.96it/s]133it [00:28,  4.99it/s]134it [00:28,  4.94it/s]135it [00:28,  4.98it/s]136it [00:29,  4.97it/s]137it [00:29,  5.00it/s]138it [00:29,  5.03it/s]139it [00:29,  5.05it/s]140it [00:29,  5.06it/s]141it [00:30,  4.97it/s]142it [00:30,  5.01it/s]143it [00:30,  5.03it/s]144it [00:30,  5.05it/s]145it [00:30,  5.06it/s]146it [00:31,  4.97it/s]147it [00:31,  5.00it/s]148it [00:31,  5.03it/s]149it [00:31,  5.04it/s]150it [00:31,  5.06it/s]151it [00:32,  5.07it/s]152it [00:32,  5.06it/s]153it [00:32,  5.08it/s]154it [00:32,  5.03it/s]155it [00:32,  4.87it/s]156it [00:33,  4.90it/s]157it [00:33,  4.87it/s]158it [00:33,  4.93it/s]159it [00:33,  4.98it/s]160it [00:33,  5.01it/s]161it [00:34,  5.03it/s]162it [00:34,  5.04it/s]163it [00:34,  5.06it/s]164it [00:34,  5.07it/s]165it [00:34,  5.08it/s]166it [00:35,  5.08it/s]167it [00:35,  5.08it/s]168it [00:35,  5.08it/s]169it [00:35,  4.96it/s]170it [00:35,  5.00it/s]171it [00:36,  5.02it/s]172it [00:36,  5.04it/s]173it [00:36,  5.05it/s]174it [00:36,  4.97it/s]175it [00:36,  5.00it/s]176it [00:37,  5.03it/s]177it [00:37,  5.04it/s]178it [00:37,  5.06it/s]179it [00:37,  4.96it/s]180it [00:37,  5.00it/s]181it [00:38,  5.03it/s]182it [00:38,  5.05it/s]183it [00:38,  5.06it/s]184it [00:38,  5.07it/s]185it [00:38,  4.92it/s]186it [00:39,  4.84it/s]187it [00:39,  4.91it/s]188it [00:39,  4.97it/s]189it [00:39,  4.91it/s]190it [00:39,  4.96it/s]191it [00:40,  5.00it/s]192it [00:40,  5.03it/s]192it [00:40,  4.77it/s]
+0it [00:00, ?it/s]1it [00:00,  2.86it/s]2it [00:00,  3.05it/s]3it [00:00,  3.14it/s]4it [00:01,  3.17it/s]5it [00:01,  3.25it/s]6it [00:01,  3.34it/s]7it [00:02,  3.32it/s]8it [00:02,  3.36it/s]9it [00:02,  3.42it/s]10it [00:02,  3.39it/s]11it [00:03,  3.30it/s]12it [00:03,  3.34it/s]13it [00:03,  3.26it/s]14it [00:04,  3.31it/s]15it [00:04,  3.31it/s]16it [00:04,  3.27it/s]17it [00:05,  3.27it/s]18it [00:05,  3.26it/s]19it [00:05,  3.30it/s]20it [00:06,  3.26it/s]21it [00:06,  3.31it/s]22it [00:06,  3.18it/s]23it [00:06,  3.24it/s]24it [00:07,  3.26it/s]25it [00:07,  3.25it/s]26it [00:07,  3.24it/s]27it [00:08,  3.23it/s]28it [00:08,  3.14it/s]29it [00:08,  3.31it/s]30it [00:09,  3.28it/s]31it [00:09,  3.31it/s]32it [00:09,  3.28it/s]33it [00:10,  3.31it/s]34it [00:10,  3.24it/s]35it [00:10,  3.10it/s]36it [00:11,  3.09it/s]37it [00:11,  3.02it/s]38it [00:11,  2.95it/s]39it [00:12,  2.85it/s]40it [00:12,  2.80it/s]41it [00:12,  2.86it/s]42it [00:13,  2.81it/s]43it [00:13,  2.83it/s]44it [00:13,  2.81it/s]45it [00:14,  2.95it/s]46it [00:14,  2.84it/s]47it [00:15,  2.56it/s]48it [00:15,  2.55it/s]49it [00:15,  2.79it/s]50it [00:16,  2.93it/s]51it [00:16,  3.15it/s]52it [00:16,  3.26it/s]53it [00:16,  3.34it/s]54it [00:17,  3.42it/s]55it [00:17,  3.45it/s]56it [00:17,  3.46it/s]57it [00:17,  3.51it/s]58it [00:18,  3.44it/s]59it [00:18,  3.36it/s]60it [00:18,  3.07it/s]61it [00:19,  3.03it/s]62it [00:19,  3.05it/s]63it [00:20,  2.76it/s]64it [00:20,  2.62it/s]65it [00:20,  2.65it/s]66it [00:21,  2.69it/s]67it [00:21,  2.74it/s]68it [00:22,  2.64it/s]69it [00:22,  2.80it/s]70it [00:22,  2.90it/s]71it [00:22,  2.90it/s]72it [00:23,  2.90it/s]73it [00:23,  2.91it/s]74it [00:24,  2.94it/s]75it [00:24,  2.99it/s]76it [00:24,  2.91it/s]77it [00:25,  2.84it/s]78it [00:25,  2.84it/s]79it [00:25,  2.76it/s]80it [00:26,  2.74it/s]81it [00:26,  2.74it/s]82it [00:26,  2.70it/s]83it [00:27,  2.67it/s]84it [00:27,  2.69it/s]85it [00:28,  2.71it/s]86it [00:28,  2.72it/s]87it [00:28,  2.81it/s]88it [00:29,  2.77it/s]89it [00:29,  2.84it/s]90it [00:29,  2.89it/s]91it [00:30,  2.83it/s]92it [00:30,  2.79it/s]93it [00:30,  2.65it/s]94it [00:31,  2.69it/s]95it [00:31,  2.64it/s]96it [00:32,  2.56it/s]97it [00:32,  2.54it/s]98it [00:32,  2.49it/s]99it [00:33,  2.69it/s]100it [00:33,  2.73it/s]101it [00:33,  2.78it/s]102it [00:34,  2.74it/s]103it [00:34,  2.48it/s]104it [00:35,  2.53it/s]105it [00:35,  2.60it/s]106it [00:35,  2.59it/s]107it [00:36,  2.62it/s]108it [00:36,  2.59it/s]109it [00:37,  2.62it/s]110it [00:37,  2.72it/s]111it [00:37,  2.76it/s]112it [00:38,  2.73it/s]113it [00:38,  2.72it/s]114it [00:38,  2.74it/s]115it [00:39,  2.77it/s]116it [00:39,  2.77it/s]117it [00:39,  2.61it/s]118it [00:40,  2.53it/s]119it [00:40,  2.56it/s]120it [00:41,  2.57it/s]121it [00:41,  2.60it/s]122it [00:41,  2.55it/s]123it [00:42,  2.57it/s]124it [00:42,  2.68it/s]125it [00:43,  2.74it/s]126it [00:43,  2.76it/s]127it [00:43,  2.75it/s]128it [00:44,  2.70it/s]129it [00:44,  2.72it/s]130it [00:44,  2.75it/s]131it [00:45,  2.79it/s]132it [00:45,  2.92it/s]133it [00:45,  2.87it/s]134it [00:46,  2.87it/s]135it [00:46,  2.89it/s]136it [00:46,  2.76it/s]137it [00:47,  2.71it/s]138it [00:47,  2.73it/s]139it [00:48,  2.73it/s]140it [00:48,  2.66it/s]141it [00:48,  2.63it/s]142it [00:49,  2.70it/s]143it [00:49,  2.64it/s]144it [00:49,  2.62it/s]145it [00:50,  2.56it/s]146it [00:50,  2.53it/s]147it [00:51,  2.55it/s]148it [00:51,  2.49it/s]149it [00:52,  2.51it/s]150it [00:52,  2.54it/s]151it [00:52,  2.55it/s]152it [00:53,  2.48it/s]153it [00:53,  2.53it/s]154it [00:53,  2.55it/s]155it [00:54,  2.57it/s]156it [00:54,  2.53it/s]157it [00:55,  2.50it/s]158it [00:55,  2.59it/s]159it [00:55,  2.59it/s]160it [00:56,  2.64it/s]161it [00:56,  2.70it/s]162it [00:56,  2.80it/s]163it [00:57,  2.78it/s]164it [00:57,  2.82it/s]165it [00:58,  2.83it/s]166it [00:58,  2.90it/s]167it [00:58,  2.79it/s]168it [00:59,  2.94it/s]169it [00:59,  2.93it/s]170it [00:59,  2.91it/s]171it [01:00,  2.74it/s]172it [01:00,  2.75it/s]173it [01:00,  2.77it/s]174it [01:01,  2.75it/s]175it [01:01,  2.74it/s]176it [01:01,  2.74it/s]177it [01:02,  2.88it/s]178it [01:02,  2.95it/s]179it [01:02,  2.86it/s]180it [01:03,  2.75it/s]181it [01:03,  2.75it/s]182it [01:04,  2.72it/s]183it [01:04,  2.61it/s]184it [01:04,  2.45it/s]185it [01:05,  2.52it/s]185it [01:05,  2.83it/s]
+程序运行时间：8634秒
+3350.47user 767.86system 2:24:09elapsed 47%CPU (0avgtext+0avgdata 2782876maxresident)k
+124677136inputs+2843360outputs (3204major+1426312minor)pagefaults 0swaps
