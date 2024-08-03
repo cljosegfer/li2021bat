@@ -1,3 +1,21 @@
+# reproducao code
+
+primeiro edite o <train_beat_aligned_swin_transformer.json> como desejar:
+* n_gpu (linha 3)
+* batch_size (linha 37)
+* epochs (linha 70)
+
+dps rode o <create_codeh5.py> mudando os caminhos como desejar:
+* code15 (linha 21, caminho do h5)
+* metadata (linha 22, caminho do exams.csv do code15!!!!!!!!!)
+
+dps rode o <main_beat_aligned.py>:
+> python main_beat_aligned.py -c train_beat_aligned_swin_transformer.json -d 0 -s 1
+
+o resultado vai estar num json em <output/saved/results/beat_aligned_swin_transformer_CODE/{ultimo folder}/metrics.json>
+
+teoricamente é pra dar certo :)
+
 # Beat-aligned Transformer
 
 This reposity contains the code for the paper "BaT: Beat-aligned Transformer for Electrocardiogram Classification" on the [Physionet/CinC Challenge 2020 dataset](https://physionetchallenges.org/2020).

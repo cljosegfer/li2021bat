@@ -568,3 +568,43 @@ class ChallengeDataLoader_beat_aligned_data_h5(BaseDataLoader):
 
     def normalization(self, X):
         return X
+
+class ChallengeDataLoader_beat_aligned_data_h5_CODE(BaseDataLoader):
+    """
+    challenge2020 data loading
+    """
+
+    def __init__(self, label_dir, split_index, batch_size, shuffle=True, num_workers=0, resample_Fs=300,
+                 window_size=3000, n_segment=1, normalization=False, augmentations=None, p=0.5, _25classes=False,
+                 lead_number=12, save_data=False, load_saved_data=True, save_dir=None, seg_with_r=False, beat_length=400):
+        self.label_dir = label_dir
+        print('Loading data...')
+        self.weights = np.ones(shape = (6, 6))
+
+        split_idx = loadmat(split_index)
+        train_index, val_index, test_index = split_idx['train_index'], split_idx['val_index'], split_idx['test_index']
+        train_index = train_index.reshape((train_index.shape[1],))
+        val_index = val_index.reshape((val_index.shape[1],))
+        test_index = test_index.reshape((test_index.shape[1],))
+
+        self.hdf5_file = h5py.File('data/code15bat.h5', 'r')
+
+        if augmentations:
+            transformers = list()
+
+            for key, value in augmentations.items():
+                module_args = dict(value['args'])
+                transformers.append(getattr(module_augmentation, key)(**module_args))
+
+            train_transform = transforms.Compose(transformers)
+            self.train_dataset = CustomTensorDataset_BeatAligned_h5_CODE(database = self.hdf5_file, split_idx = train_index, 
+                                                                    transform=train_transform, p=p)
+        else:
+            self.train_dataset = CustomTensorDataset_BeatAligned_h5_CODE(database = self.hdf5_file, split_idx = train_index)
+        self.val_dataset = CustomTensorDataset_BeatAligned_h5_CODE(database = self.hdf5_file, split_idx = val_index)
+        self.test_dataset = CustomTensorDataset_BeatAligned_h5_CODE(database = self.hdf5_file, split_idx = test_index)
+
+        super().__init__(self.train_dataset, self.val_dataset, self.test_dataset, batch_size, shuffle, num_workers)
+
+    def normalization(self, X):
+        return X

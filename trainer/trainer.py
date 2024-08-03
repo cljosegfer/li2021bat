@@ -77,7 +77,8 @@ class Trainer_beat_aligned_data(BaseTrainer):
 
         self.only_scored_classes = self.config['trainer']['only_scored_class']
         if self.only_scored_classes:
-            self.indices = [0, 3, 10, 11, 14, 15, 19, 21, 32, 47, 50, 55, 61, 63, 68, 70, 71, 72, 76, 80, 88, 95, 98, 99]
+            # self.indices = [0, 3, 10, 11, 14, 15, 19, 21, 32, 47, 50, 55, 61, 63, 68, 70, 71, 72, 76, 80, 88, 95, 98, 99]
+            self.indices = [0, 1, 2, 3, 4, 5]
 
         self.sigmoid = nn.Sigmoid()
 

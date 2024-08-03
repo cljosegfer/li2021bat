@@ -1,5 +1,5 @@
 {
-  "name": "beat_aligned_swin_transformer_CODE",
+  "name": "beat_aligned_swin_transformer",
   "n_gpu": 1,
   "arch": {
     "type": "beat_aligned_transformer",
@@ -24,17 +24,17 @@
       "patch_size":5,
       "window_size": [5,5,5,5,5],
       "img_size": 400,
-      "num_classes": 6
+      "num_classes": 108
     }
   },
   "data_loader": {
-    "type": "ChallengeDataLoader_beat_aligned_data_h5_CODE",
+    "type": "ChallengeDataLoader_beat_aligned_data_h5",
       "args": {
         "label_dir": "/home/josegfer/datasets/challenge2020/data",
-        "split_index": "data/split_code.mat",
+        "split_index": "process/data_split/split1_clean.mat",
         "save_dir": "data",
         "lead_number": 8,
-        "batch_size": 64,
+        "batch_size": 98,
         "resample_Fs": 500,
         "window_size": 5000,
         "normalization": false,
@@ -57,7 +57,12 @@
   },
   "metrics": [
     "accuracy",
-    "f_measure"
+    "f_measure",
+    "macro_f_beta_measure",
+    "macro_g_beta_measure",
+    "macro_auroc",
+    "macro_auprc",
+    "challenge_metric"
   ],
   "lr_scheduler": {
     "type": "StepLR",
@@ -67,7 +72,7 @@
     }
   },
   "trainer": {
-        "epochs": 1,
+        "epochs": 3,
         "save_dir": "output/saved",
         "save_period": 1,
         "verbosity": 2,

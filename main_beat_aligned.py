@@ -10,8 +10,10 @@ import model.beat_aligned_transformer as module_arch_beat_aligned_transformer
 
 from parse_config import ConfigParser
 from trainer import Trainer_beat_aligned_data
-from evaluater import Evaluater_beat_aligned_data
-from model.metric import ChallengeMetric
+# from evaluater import Evaluater_beat_aligned_data
+from evaluater import Evaluater_beat_aligned_data_CODE as Evaluater_beat_aligned_data
+# from model.metric import ChallengeMetric
+from model.metric import CODEMetric as ChallengeMetric
 from utils.util import load_model
 from utils.lr_scheduler import CosineAnnealingWarmUpRestarts, GradualWarmupScheduler
 import datetime

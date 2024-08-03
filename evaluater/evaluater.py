@@ -5,6 +5,60 @@ from data_loader.util import *
 
 from tqdm import tqdm
 
+import json
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+def find_best_thresholds(predictions, true_labels_dict, thresholds):
+    num_classes = len(predictions[0])
+    best_thresholds = [0.5] * num_classes
+    best_f1s = [0.0] * num_classes
+
+    for class_idx in (range(num_classes)):
+        for thresh in thresholds:
+            f1 = f1_score(
+                true_labels_dict[class_idx],
+                predictions[thresh][class_idx],
+                zero_division=0,
+            )
+
+            if f1 > best_f1s[class_idx]:
+                best_f1s[class_idx] = f1
+                best_thresholds[class_idx] = thresh
+    
+    return best_f1s, best_thresholds
+
+def metrics_table(all_binary_results, all_true_labels):
+    accuracy_scores = []
+    precision_scores = []
+    recall_scores = []
+    f1_scores = []
+
+    num_classes = all_binary_results.shape[-1]
+    for class_idx in range(num_classes):
+        class_binary_results = all_binary_results[:, class_idx]
+        class_true_labels = all_true_labels[:, class_idx]
+
+        accuracy = accuracy_score(class_true_labels, class_binary_results)
+        precision = precision_score(class_true_labels, class_binary_results, zero_division=0)
+        recall = recall_score(class_true_labels, class_binary_results, zero_division=0)
+        f1 = f1_score(class_true_labels, class_binary_results, zero_division=0)
+
+        accuracy_scores.append(accuracy)
+        precision_scores.append(precision)
+        recall_scores.append(recall)
+        f1_scores.append(f1)
+
+    metrics_dict = {
+        "Accuracy": accuracy_scores,
+        "Precision": precision_scores,
+        "Recall": recall_scores,
+        "F1 Score": f1_scores,
+    }
+
+    return metrics_dict
+
+
+
 class Evaluater_beat_aligned_data(BaseEvaluater):
     """
     Evaluater class
@@ -263,3 +317,119 @@ class Evaluater(BaseEvaluater):
         output_logit = output_logit.detach().cpu().numpy()
         output_logit = np.mean(output_logit, axis=0)
         return output_logit
+
+class Evaluater_beat_aligned_data_CODE(BaseEvaluater):
+    """
+    Evaluater class
+    """
+
+    def __init__(self, model, criterion, metric_ftns, config, data_loader, checkpoint_dir=None, result_dir=None):
+        super().__init__(model, criterion, metric_ftns, config, checkpoint_dir, result_dir)
+
+        self.config = config
+        # self.beat_length = config["evaluater"]["beat_length"]
+        self.test_metrics = MetricTracker('loss', *[m.__name__ for m in self.metric_ftns])
+        self.num_classes = config['arch']['args']['num_classes']
+        self.lead_number = config['data_loader']['args']['lead_number']
+        self.split_index = config['data_loader']['args']['split_index']
+        self.label_dir = config['data_loader']['args']['label_dir']
+        self.resample_Fs = config["data_loader"]['args']["resample_Fs"]
+        self.window_size = config["data_loader"]['args']["window_size"]
+        self.n_segment = config["evaluater"]["n_segment"]
+        self.save_dir = config["data_loader"]["args"]["save_dir"]
+        self.seg_with_r = config["data_loader"]["args"]["seg_with_r"]
+        self.sigmoid = nn.Sigmoid()
+        self.data_loader = data_loader
+
+        split_idx = loadmat(self.split_index)
+        train_index, val_index, test_index = split_idx['train_index'], split_idx['val_index'], split_idx['test_index']
+        self.test_index = test_index.reshape((test_index.shape[1], ))
+
+        # self.train_info = np.array(np.load(os.pandasth.join(self.save_dir, 'train_info' + str(self.window_size) + '_' + str(self.resample_Fs) + '_' + str(self.seg_with_r) + '.npy')))
+
+        if self.lead_number == 2:
+            # two leads
+            self.leads_index = [1, 10]
+        elif self.lead_number == 3:
+            # three leads
+            self.leads_index = [0, 1, 7]
+        elif self.lead_number == 6:
+            # six leads
+            self.leads_index = [0, 1, 2, 3, 4, 5]
+        elif self.lead_number == 8:
+            # eight leads
+            self.leads_index = [0, 1, 6, 7, 8, 9, 10, 11]
+        else:
+            self.leads_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    def _to_np(self, tensor):
+        if self.device.type == 'cuda':
+            return tensor.cpu().detach().numpy()
+        else:
+            return tensor.detach().numpy()
+
+    def evaluate(self):
+        """
+        Evaluate after training procedure finished
+        """
+
+        num_classes = 6
+        thresholds = np.arange(0, 1.01, 0.01)
+        predictions = {thresh: [[] for _ in range(num_classes)] for thresh in thresholds}
+        true_labels_dict = [[] for _ in range(num_classes)]
+
+        self.model.eval()
+        with torch.no_grad():
+            for batch_idx, ([data, info], target, class_weights) in tqdm(enumerate(self.data_loader.valid_data_loader)):
+                data, target, class_weights, info = data.to(device=self.device, dtype=torch.float), target.to(self.device, dtype=torch.float), \
+                                                class_weights.to(self.device, dtype=torch.float), info.to(self.device, dtype=torch.float)
+                output = self.model(data, info)
+
+                output_logit = self.sigmoid(output)
+                output_logit = self._to_np(output_logit)
+                target = self._to_np(target)
+
+                for class_idx in range(num_classes):
+                    for thresh in thresholds:
+                        predicted_binary = (output_logit[:, class_idx] >= thresh)
+                        predictions[thresh][class_idx].extend(
+                            predicted_binary
+                        )
+                    true_labels_dict[class_idx].extend(
+                        target[:, class_idx]
+                    )
+        
+        best_f1s, best_thresholds = find_best_thresholds(predictions, true_labels_dict, thresholds)
+
+        all_binary_results = []
+        all_true_labels = []
+        self.model.eval()
+        with torch.no_grad():
+            for batch_idx, ([data, info], target, class_weights) in tqdm(enumerate(self.data_loader.test_data_loader)):
+                data, target, class_weights, info = data.to(device=self.device, dtype=torch.float), target.to(self.device, dtype=torch.float), \
+                                                class_weights.to(self.device, dtype=torch.float), info.to(self.device, dtype=torch.float)
+                output = self.model(data, info)
+
+                output_logit = self.sigmoid(output)
+                output_logit = self._to_np(output_logit)
+                target = self._to_np(target)
+
+                binary_result = np.zeros_like(output_logit)
+                for i in range(len(best_thresholds)):
+                    binary_result[:, i] = (
+                        output_logit[:, i] >= best_thresholds[i]
+                    )
+                
+                all_binary_results.append(binary_result)
+                all_true_labels.append(target)
+
+        all_binary_results = np.array(all_binary_results)[0, :, :]
+        all_true_labels = np.array(all_true_labels)[0, :, :]
+
+        metrics_dict = metrics_table(all_binary_results, all_true_labels)
+
+        pathways = str(self.checkpoint_dir).split('/')
+        pathways[2] = 'results'
+        result_dir = '/'.join(pathways)
+        with open('{}/metrics.json'.format(str(result_dir)), 'w') as f:
+            json.dump(metrics_dict, f, indent = 2)
