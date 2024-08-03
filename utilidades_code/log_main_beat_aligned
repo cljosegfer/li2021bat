@@ -1,0 +1,1014 @@
+torch.cuda.device_count():  1
+CUDA_VISIBLE_DEVICES:  0
+beat_aligned_transformer(
+  (patch_embed): PatchEmbed(
+    (proj): Conv2d(8, 95, kernel_size=(1, 5), stride=(1, 5))
+  )
+  (pos_drop): Dropout(p=0.0, inplace=False)
+  (layers): ModuleList(
+    (0): BasicLayer(
+      dim=96, input_resolution=80, depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=96, input_resolution=80, num_heads=8, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=96, window_size=(5, 5), num_heads=8
+            (qkv): Linear(in_features=96, out_features=288, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=96, out_features=96, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): Identity()
+          (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=96, out_features=384, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=384, out_features=96, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=96, input_resolution=80, num_heads=8, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=96, window_size=(5, 5), num_heads=8
+            (qkv): Linear(in_features=96, out_features=288, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=96, out_features=96, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((96,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=96, out_features=384, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=384, out_features=96, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): Sequential(
+        (0): Conv1d(96, 192, kernel_size=(7,), stride=(1,), padding=(3,))
+        (1): ChanNorm()
+        (2): MaxPool1d(kernel_size=7, stride=2, padding=3, dilation=1, ceil_mode=False)
+      )
+    )
+    (1): BasicLayer(
+      dim=192, input_resolution=40, depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=192, input_resolution=40, num_heads=16, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=192, window_size=(5, 5), num_heads=16
+            (qkv): Linear(in_features=192, out_features=576, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=192, out_features=192, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=192, out_features=768, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=768, out_features=192, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=192, input_resolution=40, num_heads=16, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=192, window_size=(5, 5), num_heads=16
+            (qkv): Linear(in_features=192, out_features=576, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=192, out_features=192, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=192, out_features=768, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=768, out_features=192, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): Sequential(
+        (0): Conv1d(192, 384, kernel_size=(7,), stride=(1,), padding=(3,))
+        (1): ChanNorm()
+        (2): MaxPool1d(kernel_size=7, stride=2, padding=3, dilation=1, ceil_mode=False)
+      )
+    )
+    (2): BasicLayer(
+      dim=384, input_resolution=20, depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=384, input_resolution=20, num_heads=32, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=384, window_size=(5, 5), num_heads=32
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=384, input_resolution=20, num_heads=32, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=384, window_size=(5, 5), num_heads=32
+            (qkv): Linear(in_features=384, out_features=1152, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=384, out_features=384, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=384, out_features=1536, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=1536, out_features=384, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): Sequential(
+        (0): Conv1d(384, 768, kernel_size=(7,), stride=(1,), padding=(3,))
+        (1): ChanNorm()
+        (2): MaxPool1d(kernel_size=7, stride=2, padding=3, dilation=1, ceil_mode=False)
+      )
+    )
+    (3): BasicLayer(
+      dim=768, input_resolution=10, depth=6
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (2): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (3): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (4): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (5): SwinTransformerBlock(
+          dim=768, input_resolution=10, num_heads=64, window_size=5, shift_size=2, mlp_ratio=4.0
+          (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=768, window_size=(5, 5), num_heads=64
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+      (downsample): Sequential(
+        (0): Conv1d(768, 1536, kernel_size=(7,), stride=(1,), padding=(3,))
+        (1): ChanNorm()
+        (2): MaxPool1d(kernel_size=7, stride=2, padding=3, dilation=1, ceil_mode=False)
+      )
+    )
+    (4): BasicLayer(
+      dim=1536, input_resolution=5, depth=2
+      (blocks): ModuleList(
+        (0): SwinTransformerBlock(
+          dim=1536, input_resolution=5, num_heads=128, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=1536, window_size=(5, 5), num_heads=128
+            (qkv): Linear(in_features=1536, out_features=4608, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=1536, out_features=1536, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=1536, out_features=6144, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=6144, out_features=1536, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (1): SwinTransformerBlock(
+          dim=1536, input_resolution=5, num_heads=128, window_size=5, shift_size=0, mlp_ratio=4.0
+          (norm1): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+          (attn): WindowAttention(
+            dim=1536, window_size=(5, 5), num_heads=128
+            (qkv): Linear(in_features=1536, out_features=4608, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=1536, out_features=1536, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+            (softmax): Softmax(dim=-1)
+          )
+          (drop_path): DropPath()
+          (norm2): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=1536, out_features=6144, bias=True)
+            (act): GELU()
+            (fc2): Linear(in_features=6144, out_features=1536, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+        )
+      )
+    )
+  )
+  (global_attn): Attention(
+    (qkv): Linear(in_features=1536, out_features=4608, bias=False)
+    (attn_drop): Dropout(p=0.0, inplace=False)
+    (proj): Linear(in_features=1536, out_features=1536, bias=True)
+    (proj_drop): Dropout(p=0.0, inplace=False)
+  )
+  (norm1): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+  (norm2): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+  (mlp): Mlp(
+    (fc1): Linear(in_features=1536, out_features=3072, bias=True)
+    (act): GELU()
+    (fc2): Linear(in_features=3072, out_features=1536, bias=True)
+    (drop): Dropout(p=0.0, inplace=False)
+  )
+  (drop_path): Identity()
+  (norm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+  (chnorm): ChanNorm()
+  (avgpool): AdaptiveAvgPool1d(output_size=1)
+  (maxpool): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (head): Linear(in_features=1536, out_features=6, bias=True)
+  (head_coarse): Linear(in_features=768, out_features=8, bias=True)
+)
+Loading data...
+Train Epoch: 1 [0/319902 (0%)] Loss: 0.747285, 1 batch cost time 0.69
+Train Epoch: 1 [512/319902 (0%)] Loss: 0.076057, 1 batch cost time 0.51
+Train Epoch: 1 [1024/319902 (0%)] Loss: 0.199569, 1 batch cost time 0.51
+Train Epoch: 1 [1536/319902 (0%)] Loss: 0.102687, 1 batch cost time 0.51
+Train Epoch: 1 [2048/319902 (1%)] Loss: 0.037557, 1 batch cost time 0.51
+Train Epoch: 1 [2560/319902 (1%)] Loss: 0.085971, 1 batch cost time 0.51
+Train Epoch: 1 [3072/319902 (1%)] Loss: 0.096871, 1 batch cost time 0.51
+Train Epoch: 1 [3584/319902 (1%)] Loss: 0.053256, 1 batch cost time 0.51
+Train Epoch: 1 [4096/319902 (1%)] Loss: 0.066219, 1 batch cost time 0.51
+Train Epoch: 1 [4608/319902 (1%)] Loss: 0.119105, 1 batch cost time 0.51
+Train Epoch: 1 [5120/319902 (2%)] Loss: 0.088440, 1 batch cost time 0.51
+Train Epoch: 1 [5632/319902 (2%)] Loss: 0.105053, 1 batch cost time 0.51
+Train Epoch: 1 [6144/319902 (2%)] Loss: 0.131343, 1 batch cost time 0.51
+Train Epoch: 1 [6656/319902 (2%)] Loss: 0.112705, 1 batch cost time 0.51
+Train Epoch: 1 [7168/319902 (2%)] Loss: 0.098621, 1 batch cost time 0.51
+Train Epoch: 1 [7680/319902 (2%)] Loss: 0.128128, 1 batch cost time 0.51
+Train Epoch: 1 [8192/319902 (3%)] Loss: 0.128785, 1 batch cost time 0.51
+Train Epoch: 1 [8704/319902 (3%)] Loss: 0.070871, 1 batch cost time 0.51
+Train Epoch: 1 [9216/319902 (3%)] Loss: 0.097943, 1 batch cost time 0.51
+Train Epoch: 1 [9728/319902 (3%)] Loss: 0.088378, 1 batch cost time 0.51
+Train Epoch: 1 [10240/319902 (3%)] Loss: 0.115463, 1 batch cost time 0.51
+Train Epoch: 1 [10752/319902 (3%)] Loss: 0.115159, 1 batch cost time 0.51
+Train Epoch: 1 [11264/319902 (4%)] Loss: 0.070806, 1 batch cost time 0.51
+Train Epoch: 1 [11776/319902 (4%)] Loss: 0.084299, 1 batch cost time 0.51
+Train Epoch: 1 [12288/319902 (4%)] Loss: 0.108194, 1 batch cost time 0.51
+Train Epoch: 1 [12800/319902 (4%)] Loss: 0.104562, 1 batch cost time 0.51
+Train Epoch: 1 [13312/319902 (4%)] Loss: 0.143637, 1 batch cost time 0.51
+Train Epoch: 1 [13824/319902 (4%)] Loss: 0.090049, 1 batch cost time 0.51
+Train Epoch: 1 [14336/319902 (4%)] Loss: 0.070471, 1 batch cost time 0.51
+Train Epoch: 1 [14848/319902 (5%)] Loss: 0.063900, 1 batch cost time 0.51
+Train Epoch: 1 [15360/319902 (5%)] Loss: 0.066846, 1 batch cost time 0.51
+Train Epoch: 1 [15872/319902 (5%)] Loss: 0.140183, 1 batch cost time 0.51
+Train Epoch: 1 [16384/319902 (5%)] Loss: 0.074958, 1 batch cost time 0.51
+Train Epoch: 1 [16896/319902 (5%)] Loss: 0.151771, 1 batch cost time 0.51
+Train Epoch: 1 [17408/319902 (5%)] Loss: 0.129109, 1 batch cost time 0.51
+Train Epoch: 1 [17920/319902 (6%)] Loss: 0.089139, 1 batch cost time 0.51
+Train Epoch: 1 [18432/319902 (6%)] Loss: 0.118081, 1 batch cost time 0.51
+Train Epoch: 1 [18944/319902 (6%)] Loss: 0.076489, 1 batch cost time 0.51
+Train Epoch: 1 [19456/319902 (6%)] Loss: 0.073504, 1 batch cost time 0.51
+Train Epoch: 1 [19968/319902 (6%)] Loss: 0.075881, 1 batch cost time 0.51
+Train Epoch: 1 [20480/319902 (6%)] Loss: 0.112155, 1 batch cost time 0.51
+Train Epoch: 1 [20992/319902 (7%)] Loss: 0.082639, 1 batch cost time 0.51
+Train Epoch: 1 [21504/319902 (7%)] Loss: 0.093387, 1 batch cost time 0.51
+Train Epoch: 1 [22016/319902 (7%)] Loss: 0.035102, 1 batch cost time 0.51
+Train Epoch: 1 [22528/319902 (7%)] Loss: 0.097011, 1 batch cost time 0.51
+Train Epoch: 1 [23040/319902 (7%)] Loss: 0.105647, 1 batch cost time 0.51
+Train Epoch: 1 [23552/319902 (7%)] Loss: 0.082917, 1 batch cost time 0.51
+Train Epoch: 1 [24064/319902 (8%)] Loss: 0.098863, 1 batch cost time 0.51
+Train Epoch: 1 [24576/319902 (8%)] Loss: 0.107248, 1 batch cost time 0.51
+Train Epoch: 1 [25088/319902 (8%)] Loss: 0.110232, 1 batch cost time 0.51
+Train Epoch: 1 [25600/319902 (8%)] Loss: 0.063536, 1 batch cost time 0.51
+Train Epoch: 1 [26112/319902 (8%)] Loss: 0.127150, 1 batch cost time 0.51
+Train Epoch: 1 [26624/319902 (8%)] Loss: 0.106919, 1 batch cost time 0.51
+Train Epoch: 1 [27136/319902 (8%)] Loss: 0.101437, 1 batch cost time 0.51
+Train Epoch: 1 [27648/319902 (9%)] Loss: 0.095331, 1 batch cost time 0.51
+Train Epoch: 1 [28160/319902 (9%)] Loss: 0.114563, 1 batch cost time 0.51
+Train Epoch: 1 [28672/319902 (9%)] Loss: 0.104255, 1 batch cost time 0.51
+Train Epoch: 1 [29184/319902 (9%)] Loss: 0.079429, 1 batch cost time 0.51
+Train Epoch: 1 [29696/319902 (9%)] Loss: 0.084167, 1 batch cost time 0.51
+Train Epoch: 1 [30208/319902 (9%)] Loss: 0.108893, 1 batch cost time 0.51
+Train Epoch: 1 [30720/319902 (10%)] Loss: 0.068916, 1 batch cost time 0.51
+Train Epoch: 1 [31232/319902 (10%)] Loss: 0.114803, 1 batch cost time 0.51
+Train Epoch: 1 [31744/319902 (10%)] Loss: 0.059847, 1 batch cost time 0.51
+Train Epoch: 1 [32256/319902 (10%)] Loss: 0.156899, 1 batch cost time 0.51
+Train Epoch: 1 [32768/319902 (10%)] Loss: 0.089222, 1 batch cost time 0.51
+Train Epoch: 1 [33280/319902 (10%)] Loss: 0.058553, 1 batch cost time 0.51
+Train Epoch: 1 [33792/319902 (11%)] Loss: 0.081422, 1 batch cost time 0.51
+Train Epoch: 1 [34304/319902 (11%)] Loss: 0.113453, 1 batch cost time 0.51
+Train Epoch: 1 [34816/319902 (11%)] Loss: 0.047094, 1 batch cost time 0.51
+Train Epoch: 1 [35328/319902 (11%)] Loss: 0.092237, 1 batch cost time 0.51
+Train Epoch: 1 [35840/319902 (11%)] Loss: 0.096799, 1 batch cost time 0.51
+Train Epoch: 1 [36352/319902 (11%)] Loss: 0.095183, 1 batch cost time 0.51
+Train Epoch: 1 [36864/319902 (12%)] Loss: 0.096672, 1 batch cost time 0.51
+Train Epoch: 1 [37376/319902 (12%)] Loss: 0.091461, 1 batch cost time 0.51
+Train Epoch: 1 [37888/319902 (12%)] Loss: 0.073339, 1 batch cost time 0.51
+Train Epoch: 1 [38400/319902 (12%)] Loss: 0.081089, 1 batch cost time 0.51
+Train Epoch: 1 [38912/319902 (12%)] Loss: 0.096442, 1 batch cost time 0.51
+Train Epoch: 1 [39424/319902 (12%)] Loss: 0.142254, 1 batch cost time 0.51
+Train Epoch: 1 [39936/319902 (12%)] Loss: 0.097023, 1 batch cost time 0.51
+Train Epoch: 1 [40448/319902 (13%)] Loss: 0.063761, 1 batch cost time 0.51
+Train Epoch: 1 [40960/319902 (13%)] Loss: 0.053832, 1 batch cost time 0.51
+Train Epoch: 1 [41472/319902 (13%)] Loss: 0.089136, 1 batch cost time 0.51
+Train Epoch: 1 [41984/319902 (13%)] Loss: 0.099732, 1 batch cost time 0.51
+Train Epoch: 1 [42496/319902 (13%)] Loss: 0.080231, 1 batch cost time 0.51
+Train Epoch: 1 [43008/319902 (13%)] Loss: 0.099710, 1 batch cost time 0.51
+Train Epoch: 1 [43520/319902 (14%)] Loss: 0.110392, 1 batch cost time 0.51
+Train Epoch: 1 [44032/319902 (14%)] Loss: 0.098718, 1 batch cost time 0.51
+Train Epoch: 1 [44544/319902 (14%)] Loss: 0.126805, 1 batch cost time 0.51
+Train Epoch: 1 [45056/319902 (14%)] Loss: 0.075226, 1 batch cost time 0.51
+Train Epoch: 1 [45568/319902 (14%)] Loss: 0.071864, 1 batch cost time 0.51
+Train Epoch: 1 [46080/319902 (14%)] Loss: 0.088573, 1 batch cost time 0.51
+Train Epoch: 1 [46592/319902 (15%)] Loss: 0.066496, 1 batch cost time 0.51
+Train Epoch: 1 [47104/319902 (15%)] Loss: 0.066720, 1 batch cost time 0.51
+Train Epoch: 1 [47616/319902 (15%)] Loss: 0.044090, 1 batch cost time 0.51
+Train Epoch: 1 [48128/319902 (15%)] Loss: 0.117029, 1 batch cost time 0.51
+Train Epoch: 1 [48640/319902 (15%)] Loss: 0.069977, 1 batch cost time 0.51
+Train Epoch: 1 [49152/319902 (15%)] Loss: 0.073620, 1 batch cost time 0.51
+Train Epoch: 1 [49664/319902 (16%)] Loss: 0.033485, 1 batch cost time 0.51
+Train Epoch: 1 [50176/319902 (16%)] Loss: 0.080132, 1 batch cost time 0.51
+Train Epoch: 1 [50688/319902 (16%)] Loss: 0.070312, 1 batch cost time 0.51
+Train Epoch: 1 [51200/319902 (16%)] Loss: 0.095393, 1 batch cost time 0.51
+Train Epoch: 1 [51712/319902 (16%)] Loss: 0.059365, 1 batch cost time 0.51
+Train Epoch: 1 [52224/319902 (16%)] Loss: 0.060861, 1 batch cost time 0.51
+Train Epoch: 1 [52736/319902 (16%)] Loss: 0.077076, 1 batch cost time 0.51
+Train Epoch: 1 [53248/319902 (17%)] Loss: 0.073832, 1 batch cost time 0.51
+Train Epoch: 1 [53760/319902 (17%)] Loss: 0.090255, 1 batch cost time 0.51
+Train Epoch: 1 [54272/319902 (17%)] Loss: 0.053943, 1 batch cost time 0.51
+Train Epoch: 1 [54784/319902 (17%)] Loss: 0.066870, 1 batch cost time 0.51
+Train Epoch: 1 [55296/319902 (17%)] Loss: 0.025560, 1 batch cost time 0.51
+Train Epoch: 1 [55808/319902 (17%)] Loss: 0.071087, 1 batch cost time 0.51
+Train Epoch: 1 [56320/319902 (18%)] Loss: 0.093564, 1 batch cost time 0.51
+Train Epoch: 1 [56832/319902 (18%)] Loss: 0.050840, 1 batch cost time 0.51
+Train Epoch: 1 [57344/319902 (18%)] Loss: 0.129039, 1 batch cost time 0.51
+Train Epoch: 1 [57856/319902 (18%)] Loss: 0.097797, 1 batch cost time 0.51
+Train Epoch: 1 [58368/319902 (18%)] Loss: 0.128121, 1 batch cost time 0.51
+Train Epoch: 1 [58880/319902 (18%)] Loss: 0.066398, 1 batch cost time 0.51
+Train Epoch: 1 [59392/319902 (19%)] Loss: 0.123832, 1 batch cost time 0.51
+Train Epoch: 1 [59904/319902 (19%)] Loss: 0.089329, 1 batch cost time 0.51
+Train Epoch: 1 [60416/319902 (19%)] Loss: 0.083447, 1 batch cost time 0.51
+Train Epoch: 1 [60928/319902 (19%)] Loss: 0.076065, 1 batch cost time 0.51
+Train Epoch: 1 [61440/319902 (19%)] Loss: 0.101086, 1 batch cost time 0.51
+Train Epoch: 1 [61952/319902 (19%)] Loss: 0.089401, 1 batch cost time 0.51
+Train Epoch: 1 [62464/319902 (20%)] Loss: 0.104713, 1 batch cost time 0.51
+Train Epoch: 1 [62976/319902 (20%)] Loss: 0.057811, 1 batch cost time 0.51
+Train Epoch: 1 [63488/319902 (20%)] Loss: 0.096001, 1 batch cost time 0.51
+Train Epoch: 1 [64000/319902 (20%)] Loss: 0.102850, 1 batch cost time 0.51
+Train Epoch: 1 [64512/319902 (20%)] Loss: 0.058356, 1 batch cost time 0.51
+Train Epoch: 1 [65024/319902 (20%)] Loss: 0.145146, 1 batch cost time 0.51
+Train Epoch: 1 [65536/319902 (20%)] Loss: 0.070606, 1 batch cost time 0.51
+Train Epoch: 1 [66048/319902 (21%)] Loss: 0.075498, 1 batch cost time 0.51
+Train Epoch: 1 [66560/319902 (21%)] Loss: 0.078838, 1 batch cost time 0.51
+Train Epoch: 1 [67072/319902 (21%)] Loss: 0.068790, 1 batch cost time 0.51
+Train Epoch: 1 [67584/319902 (21%)] Loss: 0.126810, 1 batch cost time 0.51
+Train Epoch: 1 [68096/319902 (21%)] Loss: 0.056467, 1 batch cost time 0.51
+Train Epoch: 1 [68608/319902 (21%)] Loss: 0.065088, 1 batch cost time 0.51
+Train Epoch: 1 [69120/319902 (22%)] Loss: 0.051876, 1 batch cost time 0.51
+Train Epoch: 1 [69632/319902 (22%)] Loss: 0.051369, 1 batch cost time 0.51
+Train Epoch: 1 [70144/319902 (22%)] Loss: 0.058596, 1 batch cost time 0.51
+Train Epoch: 1 [70656/319902 (22%)] Loss: 0.073436, 1 batch cost time 0.51
+Train Epoch: 1 [71168/319902 (22%)] Loss: 0.050305, 1 batch cost time 0.51
+Train Epoch: 1 [71680/319902 (22%)] Loss: 0.043172, 1 batch cost time 0.51
+Train Epoch: 1 [72192/319902 (23%)] Loss: 0.084571, 1 batch cost time 0.51
+Train Epoch: 1 [72704/319902 (23%)] Loss: 0.086104, 1 batch cost time 0.51
+Train Epoch: 1 [73216/319902 (23%)] Loss: 0.085142, 1 batch cost time 0.51
+Train Epoch: 1 [73728/319902 (23%)] Loss: 0.096010, 1 batch cost time 0.51
+Train Epoch: 1 [74240/319902 (23%)] Loss: 0.075156, 1 batch cost time 0.51
+Train Epoch: 1 [74752/319902 (23%)] Loss: 0.076107, 1 batch cost time 0.51
+Train Epoch: 1 [75264/319902 (24%)] Loss: 0.144576, 1 batch cost time 0.51
+Train Epoch: 1 [75776/319902 (24%)] Loss: 0.102737, 1 batch cost time 0.51
+Train Epoch: 1 [76288/319902 (24%)] Loss: 0.069603, 1 batch cost time 0.51
+Train Epoch: 1 [76800/319902 (24%)] Loss: 0.071096, 1 batch cost time 0.51
+Train Epoch: 1 [77312/319902 (24%)] Loss: 0.086113, 1 batch cost time 0.51
+Train Epoch: 1 [77824/319902 (24%)] Loss: 0.100249, 1 batch cost time 0.51
+Train Epoch: 1 [78336/319902 (24%)] Loss: 0.038140, 1 batch cost time 0.51
+Train Epoch: 1 [78848/319902 (25%)] Loss: 0.060224, 1 batch cost time 0.51
+Train Epoch: 1 [79360/319902 (25%)] Loss: 0.069941, 1 batch cost time 0.51
+Train Epoch: 1 [79872/319902 (25%)] Loss: 0.076450, 1 batch cost time 0.51
+Train Epoch: 1 [80384/319902 (25%)] Loss: 0.068033, 1 batch cost time 0.51
+Train Epoch: 1 [80896/319902 (25%)] Loss: 0.065072, 1 batch cost time 0.51
+Train Epoch: 1 [81408/319902 (25%)] Loss: 0.093594, 1 batch cost time 0.51
+Train Epoch: 1 [81920/319902 (26%)] Loss: 0.094200, 1 batch cost time 0.51
+Train Epoch: 1 [82432/319902 (26%)] Loss: 0.089378, 1 batch cost time 0.51
+Train Epoch: 1 [82944/319902 (26%)] Loss: 0.082677, 1 batch cost time 0.51
+Train Epoch: 1 [83456/319902 (26%)] Loss: 0.060659, 1 batch cost time 0.51
+Train Epoch: 1 [83968/319902 (26%)] Loss: 0.138836, 1 batch cost time 0.51
+Train Epoch: 1 [84480/319902 (26%)] Loss: 0.034095, 1 batch cost time 0.51
+Train Epoch: 1 [84992/319902 (27%)] Loss: 0.079138, 1 batch cost time 0.51
+Train Epoch: 1 [85504/319902 (27%)] Loss: 0.059572, 1 batch cost time 0.51
+Train Epoch: 1 [86016/319902 (27%)] Loss: 0.061995, 1 batch cost time 0.51
+Train Epoch: 1 [86528/319902 (27%)] Loss: 0.079628, 1 batch cost time 0.51
+Train Epoch: 1 [87040/319902 (27%)] Loss: 0.061560, 1 batch cost time 0.51
+Train Epoch: 1 [87552/319902 (27%)] Loss: 0.071010, 1 batch cost time 0.51
+Train Epoch: 1 [88064/319902 (28%)] Loss: 0.119274, 1 batch cost time 0.51
+Train Epoch: 1 [88576/319902 (28%)] Loss: 0.071614, 1 batch cost time 0.52
+Train Epoch: 1 [89088/319902 (28%)] Loss: 0.035133, 1 batch cost time 0.51
+Train Epoch: 1 [89600/319902 (28%)] Loss: 0.062424, 1 batch cost time 0.51
+Train Epoch: 1 [90112/319902 (28%)] Loss: 0.074300, 1 batch cost time 0.51
+Train Epoch: 1 [90624/319902 (28%)] Loss: 0.047148, 1 batch cost time 0.51
+Train Epoch: 1 [91136/319902 (28%)] Loss: 0.058367, 1 batch cost time 0.51
+Train Epoch: 1 [91648/319902 (29%)] Loss: 0.051570, 1 batch cost time 0.51
+Train Epoch: 1 [92160/319902 (29%)] Loss: 0.071389, 1 batch cost time 0.51
+Train Epoch: 1 [92672/319902 (29%)] Loss: 0.050865, 1 batch cost time 0.51
+Train Epoch: 1 [93184/319902 (29%)] Loss: 0.080128, 1 batch cost time 0.51
+Train Epoch: 1 [93696/319902 (29%)] Loss: 0.072345, 1 batch cost time 0.51
+Train Epoch: 1 [94208/319902 (29%)] Loss: 0.047281, 1 batch cost time 0.51
+Train Epoch: 1 [94720/319902 (30%)] Loss: 0.055638, 1 batch cost time 0.51
+Train Epoch: 1 [95232/319902 (30%)] Loss: 0.052451, 1 batch cost time 0.51
+Train Epoch: 1 [95744/319902 (30%)] Loss: 0.083893, 1 batch cost time 0.51
+Train Epoch: 1 [96256/319902 (30%)] Loss: 0.040375, 1 batch cost time 0.51
+Train Epoch: 1 [96768/319902 (30%)] Loss: 0.057039, 1 batch cost time 0.51
+Train Epoch: 1 [97280/319902 (30%)] Loss: 0.040440, 1 batch cost time 0.51
+Train Epoch: 1 [97792/319902 (31%)] Loss: 0.088951, 1 batch cost time 0.51
+Train Epoch: 1 [98304/319902 (31%)] Loss: 0.058158, 1 batch cost time 0.51
+Train Epoch: 1 [98816/319902 (31%)] Loss: 0.076679, 1 batch cost time 0.51
+Train Epoch: 1 [99328/319902 (31%)] Loss: 0.050080, 1 batch cost time 0.51
+Train Epoch: 1 [99840/319902 (31%)] Loss: 0.046718, 1 batch cost time 0.51
+Train Epoch: 1 [100352/319902 (31%)] Loss: 0.073921, 1 batch cost time 0.51
+Train Epoch: 1 [100864/319902 (32%)] Loss: 0.052461, 1 batch cost time 0.51
+Train Epoch: 1 [101376/319902 (32%)] Loss: 0.074075, 1 batch cost time 0.51
+Train Epoch: 1 [101888/319902 (32%)] Loss: 0.043146, 1 batch cost time 0.51
+Train Epoch: 1 [102400/319902 (32%)] Loss: 0.047522, 1 batch cost time 0.51
+Train Epoch: 1 [102912/319902 (32%)] Loss: 0.087295, 1 batch cost time 0.51
+Train Epoch: 1 [103424/319902 (32%)] Loss: 0.052924, 1 batch cost time 0.51
+Train Epoch: 1 [103936/319902 (32%)] Loss: 0.097767, 1 batch cost time 0.51
+Train Epoch: 1 [104448/319902 (33%)] Loss: 0.072470, 1 batch cost time 0.51
+Train Epoch: 1 [104960/319902 (33%)] Loss: 0.054150, 1 batch cost time 0.51
+Train Epoch: 1 [105472/319902 (33%)] Loss: 0.071324, 1 batch cost time 0.51
+Train Epoch: 1 [105984/319902 (33%)] Loss: 0.049026, 1 batch cost time 0.51
+Train Epoch: 1 [106496/319902 (33%)] Loss: 0.095249, 1 batch cost time 0.51
+Train Epoch: 1 [107008/319902 (33%)] Loss: 0.048976, 1 batch cost time 0.51
+Train Epoch: 1 [107520/319902 (34%)] Loss: 0.079972, 1 batch cost time 0.51
+Train Epoch: 1 [108032/319902 (34%)] Loss: 0.078366, 1 batch cost time 0.51
+Train Epoch: 1 [108544/319902 (34%)] Loss: 0.035465, 1 batch cost time 0.51
+Train Epoch: 1 [109056/319902 (34%)] Loss: 0.053320, 1 batch cost time 0.51
+Train Epoch: 1 [109568/319902 (34%)] Loss: 0.035382, 1 batch cost time 0.51
+Train Epoch: 1 [110080/319902 (34%)] Loss: 0.071716, 1 batch cost time 0.51
+Train Epoch: 1 [110592/319902 (35%)] Loss: 0.062557, 1 batch cost time 0.51
+Train Epoch: 1 [111104/319902 (35%)] Loss: 0.051931, 1 batch cost time 0.51
+Train Epoch: 1 [111616/319902 (35%)] Loss: 0.104865, 1 batch cost time 0.51
+Train Epoch: 1 [112128/319902 (35%)] Loss: 0.032456, 1 batch cost time 0.51
+Train Epoch: 1 [112640/319902 (35%)] Loss: 0.058879, 1 batch cost time 0.51
+Train Epoch: 1 [113152/319902 (35%)] Loss: 0.059731, 1 batch cost time 0.51
+Train Epoch: 1 [113664/319902 (36%)] Loss: 0.052644, 1 batch cost time 0.51
+Train Epoch: 1 [114176/319902 (36%)] Loss: 0.055393, 1 batch cost time 0.51
+Train Epoch: 1 [114688/319902 (36%)] Loss: 0.088008, 1 batch cost time 0.51
+Train Epoch: 1 [115200/319902 (36%)] Loss: 0.053334, 1 batch cost time 0.51
+Train Epoch: 1 [115712/319902 (36%)] Loss: 0.092702, 1 batch cost time 0.51
+Train Epoch: 1 [116224/319902 (36%)] Loss: 0.071629, 1 batch cost time 0.51
+Train Epoch: 1 [116736/319902 (36%)] Loss: 0.060165, 1 batch cost time 0.51
+Train Epoch: 1 [117248/319902 (37%)] Loss: 0.039484, 1 batch cost time 0.51
+Train Epoch: 1 [117760/319902 (37%)] Loss: 0.061447, 1 batch cost time 0.51
+Train Epoch: 1 [118272/319902 (37%)] Loss: 0.030730, 1 batch cost time 0.51
+Train Epoch: 1 [118784/319902 (37%)] Loss: 0.103796, 1 batch cost time 0.51
+Train Epoch: 1 [119296/319902 (37%)] Loss: 0.121911, 1 batch cost time 0.51
+Train Epoch: 1 [119808/319902 (37%)] Loss: 0.065664, 1 batch cost time 0.51
+Train Epoch: 1 [120320/319902 (38%)] Loss: 0.039156, 1 batch cost time 0.51
+Train Epoch: 1 [120832/319902 (38%)] Loss: 0.074076, 1 batch cost time 0.51
+Train Epoch: 1 [121344/319902 (38%)] Loss: 0.030315, 1 batch cost time 0.51
+Train Epoch: 1 [121856/319902 (38%)] Loss: 0.057568, 1 batch cost time 0.51
+Train Epoch: 1 [122368/319902 (38%)] Loss: 0.084489, 1 batch cost time 0.51
+Train Epoch: 1 [122880/319902 (38%)] Loss: 0.070920, 1 batch cost time 0.51
+Train Epoch: 1 [123392/319902 (39%)] Loss: 0.047197, 1 batch cost time 0.51
+Train Epoch: 1 [123904/319902 (39%)] Loss: 0.024091, 1 batch cost time 0.51
+Train Epoch: 1 [124416/319902 (39%)] Loss: 0.067543, 1 batch cost time 0.51
+Train Epoch: 1 [124928/319902 (39%)] Loss: 0.042545, 1 batch cost time 0.51
+Train Epoch: 1 [125440/319902 (39%)] Loss: 0.051525, 1 batch cost time 0.51
+Train Epoch: 1 [125952/319902 (39%)] Loss: 0.052065, 1 batch cost time 0.51
+Train Epoch: 1 [126464/319902 (40%)] Loss: 0.074280, 1 batch cost time 0.51
+Train Epoch: 1 [126976/319902 (40%)] Loss: 0.034814, 1 batch cost time 0.51
+Train Epoch: 1 [127488/319902 (40%)] Loss: 0.039909, 1 batch cost time 0.51
+Train Epoch: 1 [128000/319902 (40%)] Loss: 0.088376, 1 batch cost time 0.51
+Train Epoch: 1 [128512/319902 (40%)] Loss: 0.099520, 1 batch cost time 0.51
+Train Epoch: 1 [129024/319902 (40%)] Loss: 0.064369, 1 batch cost time 0.51
+Train Epoch: 1 [129536/319902 (40%)] Loss: 0.078800, 1 batch cost time 0.51
+Train Epoch: 1 [130048/319902 (41%)] Loss: 0.074622, 1 batch cost time 0.51
+Train Epoch: 1 [130560/319902 (41%)] Loss: 0.037161, 1 batch cost time 0.51
+Train Epoch: 1 [131072/319902 (41%)] Loss: 0.090787, 1 batch cost time 0.51
+Train Epoch: 1 [131584/319902 (41%)] Loss: 0.041436, 1 batch cost time 0.51
+Train Epoch: 1 [132096/319902 (41%)] Loss: 0.094816, 1 batch cost time 0.51
+Train Epoch: 1 [132608/319902 (41%)] Loss: 0.041346, 1 batch cost time 0.51
+Train Epoch: 1 [133120/319902 (42%)] Loss: 0.063249, 1 batch cost time 0.51
+Train Epoch: 1 [133632/319902 (42%)] Loss: 0.035059, 1 batch cost time 0.51
+Train Epoch: 1 [134144/319902 (42%)] Loss: 0.057684, 1 batch cost time 0.51
+Train Epoch: 1 [134656/319902 (42%)] Loss: 0.062837, 1 batch cost time 0.51
+Train Epoch: 1 [135168/319902 (42%)] Loss: 0.068615, 1 batch cost time 0.51
+Train Epoch: 1 [135680/319902 (42%)] Loss: 0.057547, 1 batch cost time 0.51
+Train Epoch: 1 [136192/319902 (43%)] Loss: 0.057353, 1 batch cost time 0.51
+Train Epoch: 1 [136704/319902 (43%)] Loss: 0.074900, 1 batch cost time 0.51
+Train Epoch: 1 [137216/319902 (43%)] Loss: 0.032370, 1 batch cost time 0.51
+Train Epoch: 1 [137728/319902 (43%)] Loss: 0.057067, 1 batch cost time 0.51
+Train Epoch: 1 [138240/319902 (43%)] Loss: 0.039813, 1 batch cost time 0.51
+Train Epoch: 1 [138752/319902 (43%)] Loss: 0.062061, 1 batch cost time 0.51
+Train Epoch: 1 [139264/319902 (44%)] Loss: 0.046633, 1 batch cost time 0.51
+Train Epoch: 1 [139776/319902 (44%)] Loss: 0.099820, 1 batch cost time 0.51
+Train Epoch: 1 [140288/319902 (44%)] Loss: 0.071398, 1 batch cost time 0.51
+Train Epoch: 1 [140800/319902 (44%)] Loss: 0.064955, 1 batch cost time 0.51
+Train Epoch: 1 [141312/319902 (44%)] Loss: 0.071737, 1 batch cost time 0.51
+Train Epoch: 1 [141824/319902 (44%)] Loss: 0.049970, 1 batch cost time 0.51
+Train Epoch: 1 [142336/319902 (44%)] Loss: 0.053831, 1 batch cost time 0.51
+Train Epoch: 1 [142848/319902 (45%)] Loss: 0.046505, 1 batch cost time 0.51
+Train Epoch: 1 [143360/319902 (45%)] Loss: 0.027224, 1 batch cost time 0.51
+Train Epoch: 1 [143872/319902 (45%)] Loss: 0.052558, 1 batch cost time 0.51
+Train Epoch: 1 [144384/319902 (45%)] Loss: 0.032788, 1 batch cost time 0.51
+Train Epoch: 1 [144896/319902 (45%)] Loss: 0.058648, 1 batch cost time 0.51
+Train Epoch: 1 [145408/319902 (45%)] Loss: 0.037570, 1 batch cost time 0.51
+Train Epoch: 1 [145920/319902 (46%)] Loss: 0.090424, 1 batch cost time 0.51
+Train Epoch: 1 [146432/319902 (46%)] Loss: 0.046154, 1 batch cost time 0.51
+Train Epoch: 1 [146944/319902 (46%)] Loss: 0.087569, 1 batch cost time 0.51
+Train Epoch: 1 [147456/319902 (46%)] Loss: 0.037890, 1 batch cost time 0.51
+Train Epoch: 1 [147968/319902 (46%)] Loss: 0.047449, 1 batch cost time 0.51
+Train Epoch: 1 [148480/319902 (46%)] Loss: 0.045980, 1 batch cost time 0.51
+Train Epoch: 1 [148992/319902 (47%)] Loss: 0.056576, 1 batch cost time 0.51
+Train Epoch: 1 [149504/319902 (47%)] Loss: 0.053247, 1 batch cost time 0.51
+Train Epoch: 1 [150016/319902 (47%)] Loss: 0.066056, 1 batch cost time 0.51
+Train Epoch: 1 [150528/319902 (47%)] Loss: 0.057646, 1 batch cost time 0.51
+Train Epoch: 1 [151040/319902 (47%)] Loss: 0.041297, 1 batch cost time 0.51
+Train Epoch: 1 [151552/319902 (47%)] Loss: 0.074343, 1 batch cost time 0.51
+Train Epoch: 1 [152064/319902 (48%)] Loss: 0.062519, 1 batch cost time 0.51
+Train Epoch: 1 [152576/319902 (48%)] Loss: 0.090760, 1 batch cost time 0.51
+Train Epoch: 1 [153088/319902 (48%)] Loss: 0.089846, 1 batch cost time 0.51
+Train Epoch: 1 [153600/319902 (48%)] Loss: 0.055272, 1 batch cost time 0.51
+Train Epoch: 1 [154112/319902 (48%)] Loss: 0.078671, 1 batch cost time 0.51
+Train Epoch: 1 [154624/319902 (48%)] Loss: 0.055373, 1 batch cost time 0.51
+Train Epoch: 1 [155136/319902 (48%)] Loss: 0.064598, 1 batch cost time 0.52
+Train Epoch: 1 [155648/319902 (49%)] Loss: 0.061472, 1 batch cost time 0.51
+Train Epoch: 1 [156160/319902 (49%)] Loss: 0.069352, 1 batch cost time 0.51
+Train Epoch: 1 [156672/319902 (49%)] Loss: 0.076496, 1 batch cost time 0.51
+Train Epoch: 1 [157184/319902 (49%)] Loss: 0.055702, 1 batch cost time 0.51
+Train Epoch: 1 [157696/319902 (49%)] Loss: 0.077875, 1 batch cost time 0.51
+Train Epoch: 1 [158208/319902 (49%)] Loss: 0.079375, 1 batch cost time 0.51
+Train Epoch: 1 [158720/319902 (50%)] Loss: 0.047437, 1 batch cost time 0.51
+Train Epoch: 1 [159232/319902 (50%)] Loss: 0.038045, 1 batch cost time 0.51
+Train Epoch: 1 [159744/319902 (50%)] Loss: 0.058015, 1 batch cost time 0.51
+Train Epoch: 1 [160256/319902 (50%)] Loss: 0.049617, 1 batch cost time 0.51
+Train Epoch: 1 [160768/319902 (50%)] Loss: 0.058418, 1 batch cost time 0.51
+Train Epoch: 1 [161280/319902 (50%)] Loss: 0.054406, 1 batch cost time 0.51
+Train Epoch: 1 [161792/319902 (51%)] Loss: 0.038804, 1 batch cost time 0.51
+Train Epoch: 1 [162304/319902 (51%)] Loss: 0.034607, 1 batch cost time 0.51
+Train Epoch: 1 [162816/319902 (51%)] Loss: 0.048919, 1 batch cost time 0.51
+Train Epoch: 1 [163328/319902 (51%)] Loss: 0.052467, 1 batch cost time 0.51
+Train Epoch: 1 [163840/319902 (51%)] Loss: 0.035288, 1 batch cost time 0.51
+Train Epoch: 1 [164352/319902 (51%)] Loss: 0.039051, 1 batch cost time 0.51
+Train Epoch: 1 [164864/319902 (52%)] Loss: 0.043677, 1 batch cost time 0.51
+Train Epoch: 1 [165376/319902 (52%)] Loss: 0.053195, 1 batch cost time 0.51
+Train Epoch: 1 [165888/319902 (52%)] Loss: 0.036193, 1 batch cost time 0.51
+Train Epoch: 1 [166400/319902 (52%)] Loss: 0.045658, 1 batch cost time 0.51
+Train Epoch: 1 [166912/319902 (52%)] Loss: 0.060137, 1 batch cost time 0.51
+Train Epoch: 1 [167424/319902 (52%)] Loss: 0.025219, 1 batch cost time 0.51
+Train Epoch: 1 [167936/319902 (52%)] Loss: 0.029026, 1 batch cost time 0.51
+Train Epoch: 1 [168448/319902 (53%)] Loss: 0.037608, 1 batch cost time 0.51
+Train Epoch: 1 [168960/319902 (53%)] Loss: 0.046245, 1 batch cost time 0.52
+Train Epoch: 1 [169472/319902 (53%)] Loss: 0.054518, 1 batch cost time 0.51
+Train Epoch: 1 [169984/319902 (53%)] Loss: 0.044668, 1 batch cost time 0.51
+Train Epoch: 1 [170496/319902 (53%)] Loss: 0.049283, 1 batch cost time 0.51
+Train Epoch: 1 [171008/319902 (53%)] Loss: 0.025409, 1 batch cost time 0.51
+Train Epoch: 1 [171520/319902 (54%)] Loss: 0.044417, 1 batch cost time 0.51
+Train Epoch: 1 [172032/319902 (54%)] Loss: 0.043177, 1 batch cost time 0.51
+Train Epoch: 1 [172544/319902 (54%)] Loss: 0.034653, 1 batch cost time 0.51
+Train Epoch: 1 [173056/319902 (54%)] Loss: 0.075907, 1 batch cost time 0.51
+Train Epoch: 1 [173568/319902 (54%)] Loss: 0.044184, 1 batch cost time 0.51
+Train Epoch: 1 [174080/319902 (54%)] Loss: 0.056199, 1 batch cost time 0.51
+Train Epoch: 1 [174592/319902 (55%)] Loss: 0.068692, 1 batch cost time 0.51
+Train Epoch: 1 [175104/319902 (55%)] Loss: 0.085462, 1 batch cost time 0.51
+Train Epoch: 1 [175616/319902 (55%)] Loss: 0.057443, 1 batch cost time 0.51
+Train Epoch: 1 [176128/319902 (55%)] Loss: 0.078676, 1 batch cost time 0.51
+Train Epoch: 1 [176640/319902 (55%)] Loss: 0.019318, 1 batch cost time 0.51
+Train Epoch: 1 [177152/319902 (55%)] Loss: 0.085546, 1 batch cost time 0.51
+Train Epoch: 1 [177664/319902 (56%)] Loss: 0.048958, 1 batch cost time 0.51
+Train Epoch: 1 [178176/319902 (56%)] Loss: 0.089329, 1 batch cost time 0.51
+Train Epoch: 1 [178688/319902 (56%)] Loss: 0.061096, 1 batch cost time 0.51
+Train Epoch: 1 [179200/319902 (56%)] Loss: 0.055773, 1 batch cost time 0.51
+Train Epoch: 1 [179712/319902 (56%)] Loss: 0.035506, 1 batch cost time 0.51
+Train Epoch: 1 [180224/319902 (56%)] Loss: 0.062303, 1 batch cost time 0.51
+Train Epoch: 1 [180736/319902 (56%)] Loss: 0.080404, 1 batch cost time 0.51
+Train Epoch: 1 [181248/319902 (57%)] Loss: 0.085509, 1 batch cost time 0.51
+Train Epoch: 1 [181760/319902 (57%)] Loss: 0.057523, 1 batch cost time 0.51
+Train Epoch: 1 [182272/319902 (57%)] Loss: 0.047957, 1 batch cost time 0.51
+Train Epoch: 1 [182784/319902 (57%)] Loss: 0.028960, 1 batch cost time 0.51
+Train Epoch: 1 [183296/319902 (57%)] Loss: 0.043812, 1 batch cost time 0.51
+Train Epoch: 1 [183808/319902 (57%)] Loss: 0.094415, 1 batch cost time 0.51
+Train Epoch: 1 [184320/319902 (58%)] Loss: 0.020079, 1 batch cost time 0.51
+Train Epoch: 1 [184832/319902 (58%)] Loss: 0.038374, 1 batch cost time 0.51
+Train Epoch: 1 [185344/319902 (58%)] Loss: 0.046990, 1 batch cost time 0.52
+Train Epoch: 1 [185856/319902 (58%)] Loss: 0.019992, 1 batch cost time 0.51
+Train Epoch: 1 [186368/319902 (58%)] Loss: 0.112757, 1 batch cost time 0.51
+Train Epoch: 1 [186880/319902 (58%)] Loss: 0.038204, 1 batch cost time 0.51
+Train Epoch: 1 [187392/319902 (59%)] Loss: 0.045357, 1 batch cost time 0.51
+Train Epoch: 1 [187904/319902 (59%)] Loss: 0.058284, 1 batch cost time 0.51
+Train Epoch: 1 [188416/319902 (59%)] Loss: 0.043716, 1 batch cost time 0.51
+Train Epoch: 1 [188928/319902 (59%)] Loss: 0.088551, 1 batch cost time 0.51
+Train Epoch: 1 [189440/319902 (59%)] Loss: 0.083489, 1 batch cost time 0.51
+Train Epoch: 1 [189952/319902 (59%)] Loss: 0.045836, 1 batch cost time 0.51
+Train Epoch: 1 [190464/319902 (60%)] Loss: 0.026421, 1 batch cost time 0.51
+Train Epoch: 1 [190976/319902 (60%)] Loss: 0.044695, 1 batch cost time 0.51
+Train Epoch: 1 [191488/319902 (60%)] Loss: 0.090484, 1 batch cost time 0.51
+Train Epoch: 1 [192000/319902 (60%)] Loss: 0.044988, 1 batch cost time 0.51
+Train Epoch: 1 [192512/319902 (60%)] Loss: 0.047580, 1 batch cost time 0.51
+Train Epoch: 1 [193024/319902 (60%)] Loss: 0.036490, 1 batch cost time 0.51
+Train Epoch: 1 [193536/319902 (60%)] Loss: 0.021115, 1 batch cost time 0.51
+Train Epoch: 1 [194048/319902 (61%)] Loss: 0.096015, 1 batch cost time 0.51
+Train Epoch: 1 [194560/319902 (61%)] Loss: 0.055024, 1 batch cost time 0.51
+Train Epoch: 1 [195072/319902 (61%)] Loss: 0.061153, 1 batch cost time 0.51
+Train Epoch: 1 [195584/319902 (61%)] Loss: 0.026171, 1 batch cost time 0.51
+Train Epoch: 1 [196096/319902 (61%)] Loss: 0.030993, 1 batch cost time 0.51
+Train Epoch: 1 [196608/319902 (61%)] Loss: 0.046257, 1 batch cost time 0.51
+Train Epoch: 1 [197120/319902 (62%)] Loss: 0.073787, 1 batch cost time 0.51
+Train Epoch: 1 [197632/319902 (62%)] Loss: 0.041341, 1 batch cost time 0.51
+Train Epoch: 1 [198144/319902 (62%)] Loss: 0.051510, 1 batch cost time 0.51
+Train Epoch: 1 [198656/319902 (62%)] Loss: 0.028612, 1 batch cost time 0.51
+Train Epoch: 1 [199168/319902 (62%)] Loss: 0.037809, 1 batch cost time 0.51
+Train Epoch: 1 [199680/319902 (62%)] Loss: 0.044361, 1 batch cost time 0.51
+Train Epoch: 1 [200192/319902 (63%)] Loss: 0.032776, 1 batch cost time 0.51
+Train Epoch: 1 [200704/319902 (63%)] Loss: 0.052453, 1 batch cost time 0.51
+Train Epoch: 1 [201216/319902 (63%)] Loss: 0.086804, 1 batch cost time 0.51
+Train Epoch: 1 [201728/319902 (63%)] Loss: 0.057785, 1 batch cost time 0.51
+Train Epoch: 1 [202240/319902 (63%)] Loss: 0.031077, 1 batch cost time 0.51
+Train Epoch: 1 [202752/319902 (63%)] Loss: 0.068540, 1 batch cost time 0.52
+Train Epoch: 1 [203264/319902 (64%)] Loss: 0.038123, 1 batch cost time 0.51
+Train Epoch: 1 [203776/319902 (64%)] Loss: 0.076433, 1 batch cost time 0.51
+Train Epoch: 1 [204288/319902 (64%)] Loss: 0.056175, 1 batch cost time 0.51
+Train Epoch: 1 [204800/319902 (64%)] Loss: 0.081921, 1 batch cost time 0.51
+Train Epoch: 1 [205312/319902 (64%)] Loss: 0.042031, 1 batch cost time 0.51
+Train Epoch: 1 [205824/319902 (64%)] Loss: 0.040883, 1 batch cost time 0.51
+Train Epoch: 1 [206336/319902 (64%)] Loss: 0.024436, 1 batch cost time 0.51
+Train Epoch: 1 [206848/319902 (65%)] Loss: 0.053872, 1 batch cost time 0.51
+Train Epoch: 1 [207360/319902 (65%)] Loss: 0.052699, 1 batch cost time 0.51
+Train Epoch: 1 [207872/319902 (65%)] Loss: 0.053267, 1 batch cost time 0.51
+Train Epoch: 1 [208384/319902 (65%)] Loss: 0.049331, 1 batch cost time 0.51
+Train Epoch: 1 [208896/319902 (65%)] Loss: 0.048621, 1 batch cost time 0.51
+Train Epoch: 1 [209408/319902 (65%)] Loss: 0.044418, 1 batch cost time 0.51
+Train Epoch: 1 [209920/319902 (66%)] Loss: 0.029257, 1 batch cost time 0.51
+Train Epoch: 1 [210432/319902 (66%)] Loss: 0.030692, 1 batch cost time 0.51
+Train Epoch: 1 [210944/319902 (66%)] Loss: 0.072217, 1 batch cost time 0.51
+Train Epoch: 1 [211456/319902 (66%)] Loss: 0.028846, 1 batch cost time 0.51
+Train Epoch: 1 [211968/319902 (66%)] Loss: 0.027617, 1 batch cost time 0.52
+Train Epoch: 1 [212480/319902 (66%)] Loss: 0.055717, 1 batch cost time 0.51
+Train Epoch: 1 [212992/319902 (67%)] Loss: 0.025495, 1 batch cost time 0.51
+Train Epoch: 1 [213504/319902 (67%)] Loss: 0.012584, 1 batch cost time 0.51
+Train Epoch: 1 [214016/319902 (67%)] Loss: 0.035392, 1 batch cost time 0.51
+Train Epoch: 1 [214528/319902 (67%)] Loss: 0.042925, 1 batch cost time 0.51
+Train Epoch: 1 [215040/319902 (67%)] Loss: 0.030655, 1 batch cost time 0.51
+Train Epoch: 1 [215552/319902 (67%)] Loss: 0.037890, 1 batch cost time 0.51
+Train Epoch: 1 [216064/319902 (68%)] Loss: 0.044775, 1 batch cost time 0.51
+Train Epoch: 1 [216576/319902 (68%)] Loss: 0.027224, 1 batch cost time 0.51
+Train Epoch: 1 [217088/319902 (68%)] Loss: 0.041858, 1 batch cost time 0.51
+Train Epoch: 1 [217600/319902 (68%)] Loss: 0.011800, 1 batch cost time 0.51
+Train Epoch: 1 [218112/319902 (68%)] Loss: 0.075264, 1 batch cost time 0.51
+Train Epoch: 1 [218624/319902 (68%)] Loss: 0.029043, 1 batch cost time 0.51
+Train Epoch: 1 [219136/319902 (69%)] Loss: 0.051094, 1 batch cost time 0.51
+Train Epoch: 1 [219648/319902 (69%)] Loss: 0.094473, 1 batch cost time 0.51
+Train Epoch: 1 [220160/319902 (69%)] Loss: 0.040975, 1 batch cost time 0.51
+Train Epoch: 1 [220672/319902 (69%)] Loss: 0.039087, 1 batch cost time 0.51
+Train Epoch: 1 [221184/319902 (69%)] Loss: 0.051390, 1 batch cost time 0.51
+Train Epoch: 1 [221696/319902 (69%)] Loss: 0.031162, 1 batch cost time 0.51
+Train Epoch: 1 [222208/319902 (69%)] Loss: 0.076526, 1 batch cost time 0.51
+Train Epoch: 1 [222720/319902 (70%)] Loss: 0.041031, 1 batch cost time 0.51
+Train Epoch: 1 [223232/319902 (70%)] Loss: 0.057568, 1 batch cost time 0.51
+Train Epoch: 1 [223744/319902 (70%)] Loss: 0.072349, 1 batch cost time 0.51
+Train Epoch: 1 [224256/319902 (70%)] Loss: 0.068145, 1 batch cost time 0.51
+Train Epoch: 1 [224768/319902 (70%)] Loss: 0.041770, 1 batch cost time 0.51
+Train Epoch: 1 [225280/319902 (70%)] Loss: 0.069290, 1 batch cost time 0.51
+Train Epoch: 1 [225792/319902 (71%)] Loss: 0.088127, 1 batch cost time 0.51
+Train Epoch: 1 [226304/319902 (71%)] Loss: 0.022728, 1 batch cost time 0.51
+Train Epoch: 1 [226816/319902 (71%)] Loss: 0.046974, 1 batch cost time 0.51
+Train Epoch: 1 [227328/319902 (71%)] Loss: 0.049256, 1 batch cost time 0.51
+Train Epoch: 1 [227840/319902 (71%)] Loss: 0.033679, 1 batch cost time 0.51
+Train Epoch: 1 [228352/319902 (71%)] Loss: 0.040937, 1 batch cost time 0.51
+Train Epoch: 1 [228864/319902 (72%)] Loss: 0.059712, 1 batch cost time 0.51
+Train Epoch: 1 [229376/319902 (72%)] Loss: 0.069036, 1 batch cost time 0.51
+Train Epoch: 1 [229888/319902 (72%)] Loss: 0.065239, 1 batch cost time 0.51
+Train Epoch: 1 [230400/319902 (72%)] Loss: 0.064522, 1 batch cost time 0.51
+Train Epoch: 1 [230912/319902 (72%)] Loss: 0.053699, 1 batch cost time 0.51
+Train Epoch: 1 [231424/319902 (72%)] Loss: 0.028560, 1 batch cost time 0.51
+Train Epoch: 1 [231936/319902 (73%)] Loss: 0.065024, 1 batch cost time 0.51
+Train Epoch: 1 [232448/319902 (73%)] Loss: 0.059961, 1 batch cost time 0.51
+Train Epoch: 1 [232960/319902 (73%)] Loss: 0.029417, 1 batch cost time 0.51
+Train Epoch: 1 [233472/319902 (73%)] Loss: 0.075273, 1 batch cost time 0.51
+Train Epoch: 1 [233984/319902 (73%)] Loss: 0.031110, 1 batch cost time 0.51
+Train Epoch: 1 [234496/319902 (73%)] Loss: 0.073971, 1 batch cost time 0.51
+Train Epoch: 1 [235008/319902 (73%)] Loss: 0.044393, 1 batch cost time 0.51
+Train Epoch: 1 [235520/319902 (74%)] Loss: 0.051197, 1 batch cost time 0.51
+Train Epoch: 1 [236032/319902 (74%)] Loss: 0.028519, 1 batch cost time 0.51
+Train Epoch: 1 [236544/319902 (74%)] Loss: 0.053143, 1 batch cost time 0.51
+Train Epoch: 1 [237056/319902 (74%)] Loss: 0.058579, 1 batch cost time 0.51
+Train Epoch: 1 [237568/319902 (74%)] Loss: 0.043497, 1 batch cost time 0.51
+Train Epoch: 1 [238080/319902 (74%)] Loss: 0.050600, 1 batch cost time 0.51
+Train Epoch: 1 [238592/319902 (75%)] Loss: 0.031775, 1 batch cost time 0.51
+Train Epoch: 1 [239104/319902 (75%)] Loss: 0.030905, 1 batch cost time 0.51
+Train Epoch: 1 [239616/319902 (75%)] Loss: 0.041399, 1 batch cost time 0.51
+Train Epoch: 1 [240128/319902 (75%)] Loss: 0.033849, 1 batch cost time 0.51
+Train Epoch: 1 [240640/319902 (75%)] Loss: 0.065268, 1 batch cost time 0.51
+Train Epoch: 1 [241152/319902 (75%)] Loss: 0.047737, 1 batch cost time 0.51
+Train Epoch: 1 [241664/319902 (76%)] Loss: 0.043655, 1 batch cost time 0.51
+Train Epoch: 1 [242176/319902 (76%)] Loss: 0.028735, 1 batch cost time 0.51
+Train Epoch: 1 [242688/319902 (76%)] Loss: 0.026099, 1 batch cost time 0.51
+Train Epoch: 1 [243200/319902 (76%)] Loss: 0.126240, 1 batch cost time 0.51
+Train Epoch: 1 [243712/319902 (76%)] Loss: 0.045690, 1 batch cost time 0.51
+Train Epoch: 1 [244224/319902 (76%)] Loss: 0.034021, 1 batch cost time 0.51
+Train Epoch: 1 [244736/319902 (77%)] Loss: 0.054888, 1 batch cost time 0.51
+Train Epoch: 1 [245248/319902 (77%)] Loss: 0.043529, 1 batch cost time 0.51
+Train Epoch: 1 [245760/319902 (77%)] Loss: 0.032965, 1 batch cost time 0.51
+Train Epoch: 1 [246272/319902 (77%)] Loss: 0.017679, 1 batch cost time 0.51
+Train Epoch: 1 [246784/319902 (77%)] Loss: 0.069213, 1 batch cost time 0.51
+Train Epoch: 1 [247296/319902 (77%)] Loss: 0.040245, 1 batch cost time 0.51
+Train Epoch: 1 [247808/319902 (77%)] Loss: 0.044229, 1 batch cost time 0.51
+Train Epoch: 1 [248320/319902 (78%)] Loss: 0.065036, 1 batch cost time 0.51
+Train Epoch: 1 [248832/319902 (78%)] Loss: 0.032142, 1 batch cost time 0.51
+Train Epoch: 1 [249344/319902 (78%)] Loss: 0.077127, 1 batch cost time 0.51
+Train Epoch: 1 [249856/319902 (78%)] Loss: 0.029529, 1 batch cost time 0.51
+Train Epoch: 1 [250368/319902 (78%)] Loss: 0.039296, 1 batch cost time 0.51
+Train Epoch: 1 [250880/319902 (78%)] Loss: 0.057289, 1 batch cost time 0.51
+Train Epoch: 1 [251392/319902 (79%)] Loss: 0.060857, 1 batch cost time 0.51
+Train Epoch: 1 [251904/319902 (79%)] Loss: 0.050721, 1 batch cost time 0.52
+Train Epoch: 1 [252416/319902 (79%)] Loss: 0.047994, 1 batch cost time 0.51
+Train Epoch: 1 [252928/319902 (79%)] Loss: 0.054510, 1 batch cost time 0.51
+Train Epoch: 1 [253440/319902 (79%)] Loss: 0.024150, 1 batch cost time 0.51
+Train Epoch: 1 [253952/319902 (79%)] Loss: 0.043832, 1 batch cost time 0.51
+Train Epoch: 1 [254464/319902 (80%)] Loss: 0.037185, 1 batch cost time 0.51
+Train Epoch: 1 [254976/319902 (80%)] Loss: 0.023445, 1 batch cost time 0.51
+Train Epoch: 1 [255488/319902 (80%)] Loss: 0.045492, 1 batch cost time 0.51
+Train Epoch: 1 [256000/319902 (80%)] Loss: 0.054199, 1 batch cost time 0.51
+Train Epoch: 1 [256512/319902 (80%)] Loss: 0.027329, 1 batch cost time 0.51
+Train Epoch: 1 [257024/319902 (80%)] Loss: 0.040953, 1 batch cost time 0.51
+Train Epoch: 1 [257536/319902 (81%)] Loss: 0.039575, 1 batch cost time 0.51
+Train Epoch: 1 [258048/319902 (81%)] Loss: 0.034692, 1 batch cost time 0.51
+Train Epoch: 1 [258560/319902 (81%)] Loss: 0.033013, 1 batch cost time 0.51
+Train Epoch: 1 [259072/319902 (81%)] Loss: 0.028616, 1 batch cost time 0.52
+Train Epoch: 1 [259584/319902 (81%)] Loss: 0.040072, 1 batch cost time 0.51
+Train Epoch: 1 [260096/319902 (81%)] Loss: 0.035334, 1 batch cost time 0.51
+Train Epoch: 1 [260608/319902 (81%)] Loss: 0.061729, 1 batch cost time 0.51
+Train Epoch: 1 [261120/319902 (82%)] Loss: 0.025648, 1 batch cost time 0.51
+Train Epoch: 1 [261632/319902 (82%)] Loss: 0.064759, 1 batch cost time 0.51
+Train Epoch: 1 [262144/319902 (82%)] Loss: 0.031076, 1 batch cost time 0.51
+Train Epoch: 1 [262656/319902 (82%)] Loss: 0.026577, 1 batch cost time 0.51
+Train Epoch: 1 [263168/319902 (82%)] Loss: 0.074900, 1 batch cost time 0.51
+Train Epoch: 1 [263680/319902 (82%)] Loss: 0.035796, 1 batch cost time 0.51
+Train Epoch: 1 [264192/319902 (83%)] Loss: 0.052016, 1 batch cost time 0.51
+Train Epoch: 1 [264704/319902 (83%)] Loss: 0.029310, 1 batch cost time 0.51
+Train Epoch: 1 [265216/319902 (83%)] Loss: 0.043000, 1 batch cost time 0.51
+Train Epoch: 1 [265728/319902 (83%)] Loss: 0.060131, 1 batch cost time 0.51
+Train Epoch: 1 [266240/319902 (83%)] Loss: 0.075272, 1 batch cost time 0.51
+Train Epoch: 1 [266752/319902 (83%)] Loss: 0.024029, 1 batch cost time 0.51
+Train Epoch: 1 [267264/319902 (84%)] Loss: 0.059300, 1 batch cost time 0.51
+Train Epoch: 1 [267776/319902 (84%)] Loss: 0.059165, 1 batch cost time 0.51
+Train Epoch: 1 [268288/319902 (84%)] Loss: 0.086752, 1 batch cost time 0.51
+Train Epoch: 1 [268800/319902 (84%)] Loss: 0.041617, 1 batch cost time 0.51
+Train Epoch: 1 [269312/319902 (84%)] Loss: 0.037149, 1 batch cost time 0.51
+Train Epoch: 1 [269824/319902 (84%)] Loss: 0.097055, 1 batch cost time 0.51
+Train Epoch: 1 [270336/319902 (85%)] Loss: 0.019139, 1 batch cost time 0.51
+Train Epoch: 1 [270848/319902 (85%)] Loss: 0.051682, 1 batch cost time 0.51
+Train Epoch: 1 [271360/319902 (85%)] Loss: 0.036056, 1 batch cost time 0.51
+Train Epoch: 1 [271872/319902 (85%)] Loss: 0.057095, 1 batch cost time 0.51
+Train Epoch: 1 [272384/319902 (85%)] Loss: 0.039439, 1 batch cost time 0.51
+Train Epoch: 1 [272896/319902 (85%)] Loss: 0.028537, 1 batch cost time 0.51
+Train Epoch: 1 [273408/319902 (85%)] Loss: 0.053785, 1 batch cost time 0.51
+Train Epoch: 1 [273920/319902 (86%)] Loss: 0.026643, 1 batch cost time 0.51
+Train Epoch: 1 [274432/319902 (86%)] Loss: 0.040682, 1 batch cost time 0.51
+Train Epoch: 1 [274944/319902 (86%)] Loss: 0.056127, 1 batch cost time 0.51
+Train Epoch: 1 [275456/319902 (86%)] Loss: 0.102271, 1 batch cost time 0.51
+Train Epoch: 1 [275968/319902 (86%)] Loss: 0.062183, 1 batch cost time 0.51
+Train Epoch: 1 [276480/319902 (86%)] Loss: 0.054512, 1 batch cost time 0.51
+Train Epoch: 1 [276992/319902 (87%)] Loss: 0.036787, 1 batch cost time 0.51
+Train Epoch: 1 [277504/319902 (87%)] Loss: 0.027558, 1 batch cost time 0.51
+Train Epoch: 1 [278016/319902 (87%)] Loss: 0.040040, 1 batch cost time 0.51
+Train Epoch: 1 [278528/319902 (87%)] Loss: 0.041333, 1 batch cost time 0.51
+Train Epoch: 1 [279040/319902 (87%)] Loss: 0.035591, 1 batch cost time 0.51
+Train Epoch: 1 [279552/319902 (87%)] Loss: 0.060671, 1 batch cost time 0.51
+Train Epoch: 1 [280064/319902 (88%)] Loss: 0.052776, 1 batch cost time 0.51
+Train Epoch: 1 [280576/319902 (88%)] Loss: 0.026568, 1 batch cost time 0.51
+Train Epoch: 1 [281088/319902 (88%)] Loss: 0.045237, 1 batch cost time 0.51
+Train Epoch: 1 [281600/319902 (88%)] Loss: 0.025374, 1 batch cost time 0.51
+Train Epoch: 1 [282112/319902 (88%)] Loss: 0.058191, 1 batch cost time 0.51
+Train Epoch: 1 [282624/319902 (88%)] Loss: 0.043130, 1 batch cost time 0.51
+Train Epoch: 1 [283136/319902 (89%)] Loss: 0.049055, 1 batch cost time 0.51
+Train Epoch: 1 [283648/319902 (89%)] Loss: 0.041047, 1 batch cost time 0.51
+Train Epoch: 1 [284160/319902 (89%)] Loss: 0.039347, 1 batch cost time 0.51
+Train Epoch: 1 [284672/319902 (89%)] Loss: 0.041907, 1 batch cost time 0.51
+Train Epoch: 1 [285184/319902 (89%)] Loss: 0.048727, 1 batch cost time 0.51
+Train Epoch: 1 [285696/319902 (89%)] Loss: 0.030747, 1 batch cost time 0.51
+Train Epoch: 1 [286208/319902 (89%)] Loss: 0.062542, 1 batch cost time 0.51
+Train Epoch: 1 [286720/319902 (90%)] Loss: 0.030705, 1 batch cost time 0.51
+Train Epoch: 1 [287232/319902 (90%)] Loss: 0.066091, 1 batch cost time 0.51
+Train Epoch: 1 [287744/319902 (90%)] Loss: 0.016646, 1 batch cost time 0.51
+Train Epoch: 1 [288256/319902 (90%)] Loss: 0.041728, 1 batch cost time 0.51
+Train Epoch: 1 [288768/319902 (90%)] Loss: 0.034498, 1 batch cost time 0.51
+Train Epoch: 1 [289280/319902 (90%)] Loss: 0.041950, 1 batch cost time 0.51
+Train Epoch: 1 [289792/319902 (91%)] Loss: 0.022459, 1 batch cost time 0.51
+Train Epoch: 1 [290304/319902 (91%)] Loss: 0.033454, 1 batch cost time 0.51
+Train Epoch: 1 [290816/319902 (91%)] Loss: 0.040036, 1 batch cost time 0.51
+Train Epoch: 1 [291328/319902 (91%)] Loss: 0.024699, 1 batch cost time 0.51
+Train Epoch: 1 [291840/319902 (91%)] Loss: 0.049778, 1 batch cost time 0.51
+Train Epoch: 1 [292352/319902 (91%)] Loss: 0.022841, 1 batch cost time 0.51
+Train Epoch: 1 [292864/319902 (92%)] Loss: 0.021511, 1 batch cost time 0.51
+Train Epoch: 1 [293376/319902 (92%)] Loss: 0.034338, 1 batch cost time 0.51
+Train Epoch: 1 [293888/319902 (92%)] Loss: 0.032583, 1 batch cost time 0.51
+Train Epoch: 1 [294400/319902 (92%)] Loss: 0.039049, 1 batch cost time 0.51
+Train Epoch: 1 [294912/319902 (92%)] Loss: 0.021293, 1 batch cost time 0.51
+Train Epoch: 1 [295424/319902 (92%)] Loss: 0.073881, 1 batch cost time 0.51
+Train Epoch: 1 [295936/319902 (93%)] Loss: 0.034441, 1 batch cost time 0.51
+Train Epoch: 1 [296448/319902 (93%)] Loss: 0.035840, 1 batch cost time 0.51
+Train Epoch: 1 [296960/319902 (93%)] Loss: 0.051149, 1 batch cost time 0.51
+Train Epoch: 1 [297472/319902 (93%)] Loss: 0.031926, 1 batch cost time 0.51
+Train Epoch: 1 [297984/319902 (93%)] Loss: 0.034433, 1 batch cost time 0.51
+Train Epoch: 1 [298496/319902 (93%)] Loss: 0.032741, 1 batch cost time 0.51
+Train Epoch: 1 [299008/319902 (93%)] Loss: 0.063948, 1 batch cost time 0.51
+Train Epoch: 1 [299520/319902 (94%)] Loss: 0.045914, 1 batch cost time 0.51
+Train Epoch: 1 [300032/319902 (94%)] Loss: 0.024199, 1 batch cost time 0.51
+Train Epoch: 1 [300544/319902 (94%)] Loss: 0.050083, 1 batch cost time 0.51
+Train Epoch: 1 [301056/319902 (94%)] Loss: 0.036964, 1 batch cost time 0.51
+Train Epoch: 1 [301568/319902 (94%)] Loss: 0.059026, 1 batch cost time 0.51
+Train Epoch: 1 [302080/319902 (94%)] Loss: 0.049872, 1 batch cost time 0.51
+Train Epoch: 1 [302592/319902 (95%)] Loss: 0.026576, 1 batch cost time 0.51
+Train Epoch: 1 [303104/319902 (95%)] Loss: 0.043653, 1 batch cost time 0.51
+Train Epoch: 1 [303616/319902 (95%)] Loss: 0.054937, 1 batch cost time 0.51
+Train Epoch: 1 [304128/319902 (95%)] Loss: 0.013647, 1 batch cost time 0.51
+Train Epoch: 1 [304640/319902 (95%)] Loss: 0.027247, 1 batch cost time 0.51
+Train Epoch: 1 [305152/319902 (95%)] Loss: 0.037511, 1 batch cost time 0.51
+Train Epoch: 1 [305664/319902 (96%)] Loss: 0.037894, 1 batch cost time 0.51
+Train Epoch: 1 [306176/319902 (96%)] Loss: 0.050143, 1 batch cost time 0.51
+Train Epoch: 1 [306688/319902 (96%)] Loss: 0.073384, 1 batch cost time 0.51
+Train Epoch: 1 [307200/319902 (96%)] Loss: 0.023171, 1 batch cost time 0.51
+Train Epoch: 1 [307712/319902 (96%)] Loss: 0.016470, 1 batch cost time 0.51
+Train Epoch: 1 [308224/319902 (96%)] Loss: 0.061063, 1 batch cost time 0.51
+Train Epoch: 1 [308736/319902 (97%)] Loss: 0.043489, 1 batch cost time 0.51
+Train Epoch: 1 [309248/319902 (97%)] Loss: 0.050266, 1 batch cost time 0.51
+Train Epoch: 1 [309760/319902 (97%)] Loss: 0.068403, 1 batch cost time 0.51
+Train Epoch: 1 [310272/319902 (97%)] Loss: 0.054444, 1 batch cost time 0.51
+Train Epoch: 1 [310784/319902 (97%)] Loss: 0.020401, 1 batch cost time 0.51
+Train Epoch: 1 [311296/319902 (97%)] Loss: 0.039629, 1 batch cost time 0.51
+Train Epoch: 1 [311808/319902 (97%)] Loss: 0.037141, 1 batch cost time 0.51
+Train Epoch: 1 [312320/319902 (98%)] Loss: 0.036929, 1 batch cost time 0.51
+Train Epoch: 1 [312832/319902 (98%)] Loss: 0.015661, 1 batch cost time 0.51
+Train Epoch: 1 [313344/319902 (98%)] Loss: 0.040292, 1 batch cost time 0.51
+Train Epoch: 1 [313856/319902 (98%)] Loss: 0.023401, 1 batch cost time 0.51
+Train Epoch: 1 [314368/319902 (98%)] Loss: 0.024945, 1 batch cost time 0.51
+Train Epoch: 1 [314880/319902 (98%)] Loss: 0.048219, 1 batch cost time 0.51
+Train Epoch: 1 [315392/319902 (99%)] Loss: 0.029809, 1 batch cost time 0.51
+Train Epoch: 1 [315904/319902 (99%)] Loss: 0.038737, 1 batch cost time 0.51
+Train Epoch: 1 [316416/319902 (99%)] Loss: 0.039538, 1 batch cost time 0.51
+Train Epoch: 1 [316928/319902 (99%)] Loss: 0.055232, 1 batch cost time 0.51
+Train Epoch: 1 [317440/319902 (99%)] Loss: 0.052439, 1 batch cost time 0.51
+Train Epoch: 1 [317952/319902 (99%)] Loss: 0.055945, 1 batch cost time 0.51
+Train Epoch: 1 [318464/319902 (100%)] Loss: 0.034546, 1 batch cost time 0.52
+Train Epoch: 1 [318976/319902 (100%)] Loss: 0.056619, 1 batch cost time 0.51
+Train Epoch: 1 [319488/319902 (100%)] Loss: 0.024729, 1 batch cost time 0.51
+training epoch cost 9006.68090891838 seconds
+    epoch          : 1
+    lr             : 0.0001
+    loss           : 0.061760955991982974
+    accuracy       : 0.9037177370948379
+    f_measure      : 0.25544666867683413
+    val_loss       : 0.033807992906076834
+    val_accuracy   : 0.9268391927083334
+    val_f_measure  : 0.32126307720057745
+Warning: Metric 'val_challenge_metric' is not found. Model performance monitoring is disabled.
+Loading checkpoint: output/saved/models/beat_aligned_swin_transformer_CODE/0803_034253/model_best.pth ...
+Traceback (most recent call last):
+  File "main_beat_aligned.py", line 106, in <module>
+    main(config)
+  File "main_beat_aligned.py", line 78, in main
+    evaluater = Evaluater_beat_aligned_data(model, criterion, metrics,
+  File "/home/josegfer/li2021bat/evaluater/evaluater.py", line 327, in __init__
+    super().__init__(model, criterion, metric_ftns, config, checkpoint_dir, result_dir)
+  File "/home/josegfer/li2021bat/base/base_evaluater.py", line 40, in __init__
+    self._resume_checkpoint(self.checkpoint_dir / 'model_best.pth')
+  File "/home/josegfer/li2021bat/base/base_evaluater.py", line 75, in _resume_checkpoint
+    checkpoint = torch.load(resume_path)
+  File "/home/josegfer/miniconda3/envs/li2021bat/lib/python3.8/site-packages/torch/serialization.py", line 581, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/josegfer/miniconda3/envs/li2021bat/lib/python3.8/site-packages/torch/serialization.py", line 230, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/josegfer/miniconda3/envs/li2021bat/lib/python3.8/site-packages/torch/serialization.py", line 211, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'output/saved/models/beat_aligned_swin_transformer_CODE/0803_034253/model_best.pth'
+Command exited with non-zero status 1
+3272.52user 745.57system 2:34:21elapsed 43%CPU (0avgtext+0avgdata 2808892maxresident)k
+120673240inputs+2704outputs (1329major+652960minor)pagefaults 0swaps
